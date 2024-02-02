@@ -1,0 +1,166 @@
+$txt_white: white;
+
+
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #000; 
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-height: 100vh;
+  background: url('/img/bg.mp4');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+#myVideo {
+  position: fixed; 
+  right: 0;
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  z-index: -1;
+}
+
+#app::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+
+#app {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+button {
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent; 
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease, background-color 0.25s ease;
+}
+button:hover {
+  color: #ddd;
+  transform: translateY(-5px);
+}
+.vertical-menu {
+  list-style-type: none;
+  padding: 0;
+}
+
+.vertical-menu li {
+  margin: 1em 0;
+}
+
+.vertical-menu button {
+  padding: 1em 2em;
+  font-size: 1.5em; 
+  letter-spacing: 1px;
+  color: #fff;
+}
+.vertical-menu button:hover {
+  opacity: 0.8;
+}
+
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+
+.btn-menu {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.btn-menu::before {
+  content: none;
+}
+
+.btn-menu:hover, .btn-menu:focus {
+  outline: none;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Couleur primaire pour l'action principale, souvent utilisée pour le bouton 'Jouer' */
+.btn-primary {
+  background-color: #FC6736; /* Vert vif pour une bonne visibilité */
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: #FC6735;
+}
+
+/* Couleur secondaire pour des actions moins importantes comme 'Options' */
+.btn-secondary {
+  background-color: #0C2D57; /* Bleu qui contraste bien avec le vert et le fond sombre */
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #0C2D56;
+}
+
+/* Couleur pour les informations secondaires ou les liens moins importants comme 'Crédits' */
+.btn-info {
+  background-color: #EFECEC; /* Gris clair pour un contraste doux */
+  color: black !important;
+}
+
+ul {
+  list-style-type: none; /* Élimine les puces */
+  padding: 0; /* Réinitialise le padding par défaut des listes */
+  margin: 0; /* Réinitialise la marge par défaut des listes */
+}
+
+.sound-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 2; /* S'assure qu'il est au-dessus de la vidéo de fond */
+}
+
+/*couleur du titre dans les swal*/
+.title-class{
+  color: $txt_white;
+}
+
+.txt_white {
+  color : $txt_white;
+}
