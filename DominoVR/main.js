@@ -1,8 +1,3 @@
-
-import './style.css'
-
-
-
 // Sélectionnez les boutons par leur ID
 const buttonGame = document.getElementById('button1');
 const button2 = document.getElementById('button2');
