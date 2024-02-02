@@ -4,32 +4,55 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/img/logo.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Domino VR</title>
     <link rel="stylesheet" href="/style.css">
+    <script src="script/Pace.js"></script>
+    <link rel="stylesheet" href="./style/PACE.css">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Domino VR</title>
+    <style>
+      #app-inside { display: none; }
+      
+    </style>
   </head>
   <body>
     <div id="app">
-      <button id="soundToggle" class="sound-icon active"></button>
-      <video autoplay loop muted playsinline poster="img/fallback.jpg" style="width:100%; height: 100%; object-fit: cover; position: fixed; top: 0; left: 0; z-index: -1;">
-        <source src="img/bg.mp4" type="video/mp4">
-        <!-- Image de secours pour les navigateurs très anciens -->
-        <img src="img/fallback.jpg" style="width:100%; height: 100%; object-fit: cover; position: fixed; top: 0; left: 0; z-index: -1;" alt="Background image">
-      </video>
-      <ul id="menu" class="vertical-menu">
-        <li><button id="button1" class="btn-menu btn-primary">Jouer</button></li>
-        <li><button id="button2" class="btn-menu btn-secondary">Options</button></li>
-        <li><button id="button3" class="btn-menu btn-info">Crédits</button></li>
-      </ul>
-      <a-scene id="vrscene" class="hide">
-        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-        <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-        <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-        <a-sky color="#ECECEC"></a-sky>
-      </a-scene>
+      <div class="container-image" id="img-load">
+        <img src="img/logo.png" alt="Chargement" width="300">
+      </div>
+      <div id="app-inside">
+        <audio id="hoverSound" src="sounds/hover-sound.mp3" preload="auto"></audio>
+        <audio id="clickSound" src="sounds/click-sound.mp3" preload="auto"></audio>
+        <video autoplay loop muted playsinline poster="img/fallback.jpg" style="width:100%; height: 100%; object-fit: cover; position: fixed; top: 0; left: 0; z-index: -1;">
+          <source src="img/bg.mp4" type="video/mp4">
+          <!-- Image de secours pour les navigateurs très anciens -->
+          <img src="img/fallback.jpg" style="width:100%; height: 100%; object-fit: cover; position: fixed; top: 0; left: 0; z-index: -1;" alt="Background image">
+        </video>
+        <ul id="menu" class="vertical-menu">
+          <li><button id="button1" class="btn-menu btn-primary">Jouer</button></li>
+          <li><button id="button2" class="btn-menu btn-secondary">Options</button></li>
+          <li><button id="button3" class="btn-menu btn-info">Crédits</button></li>
+        </ul>
+        <a-scene id="vrscene" class="hide">
+          <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+          <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+          <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+          <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+          <a-sky color="#ECECEC"></a-sky>
+        </a-scene>
+      </div>
     </div>
-    <script src="/main.js"></script>
+    <script>
+      Pace.on('done', function() {
+        
+        setTimeout(function() {
+          document.getElementById('img-load').style.display = 'none';
+          document.getElementById('app-inside').style.display = 'block';
+        }, 3000);
+      });
+    </script>
+    <script src="script/btn.js"></script>
+    <script  src="/main.js"></script>
   </body>
 </html>
+

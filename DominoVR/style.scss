@@ -1,5 +1,14 @@
 $txt_white: white;
 
+.container-image {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Aligner les éléments vers le haut */
+  height: 100vh; /* Pour centrer verticalement */
+  flex-direction: column; /* Aligner les éléments en colonne */
+}
+
+
 
 :root {
   font-family: 'Inter', system-ui, sans-serif;
