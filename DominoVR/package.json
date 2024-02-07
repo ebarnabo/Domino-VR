@@ -4,15 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently 'vite' 'aframe-watcher'",
+    "dev": "concurrently 'vite'",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "aframe-inspector"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
     "vite": "^5.0.8"
-  },
-  "dependencies": {
-    "aframe-watcher": "^1.4.0"
   }
 }
