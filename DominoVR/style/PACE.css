@@ -9,7 +9,7 @@
     z-index: 2000;
     position: fixed;
     margin: auto;
-    top: 300px; /* Ajustez cette valeur pour déplacer la barre de chargement */
+    top: 300px; 
     left: 0;
     right: 0;
     bottom: 0;
