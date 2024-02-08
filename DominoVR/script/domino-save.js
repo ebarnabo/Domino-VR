@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const dominoHeight = 0.05; // Épaisseur du domino
   const barWidth = 0.02; // Largeur de la barre
   const barHeight = 0.04; // Hauteur de la barre
+  const barDepth = 0.04; // Profondeur de la barre
   const dominos = generateDominos(); // Générer les dominos avec leurs ID
 
   // Configuration pour la démo, pourrait être ajustée selon les besoins
@@ -13,12 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
     let dominos = [];
     for (let i = 0; i <= 6; i++) {
       for (let j = i; j <= 6; j++) {
-        dominos.push({ id: `${i}${j}`, class: 'grab', number1: i, number2: j });
+        dominos.push({ id: `${i}${j}`, number1: i, number2: j });
       }
     }
     return dominos;
   }
-  
 
   function addDots(domino, number, side) {
     const dotPositions = getDotPositions(number); // Obtenir les positions des points pour le nombre spécifié
@@ -78,13 +78,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Ajouter la barre fine au centre du domino
       const bar = document.createElement('a-box');
-      bar.setAttribute('width', barWidth/3);
-      bar.setAttribute('height', dominoHeight); // hauteur égale à celle du domino
-      bar.setAttribute('depth', 0.085);
-      bar.setAttribute('position', `0 ${(dominoHeight / 2) - (barHeight / 2)} 0`); // Positionner la barre au milieu du domino en hauteur
-      bar.setAttribute('color', 'gold');
-      // Définir la rotation de la barre ici
-      bar.setAttribute('rotation', '0 90 0'); // Ceci tourne la barre de 90 degrés sur l'axe Y, la rendant perpendiculaire à la vue de la caméra.
+      bar.setAttribute('width', barWidth);
+      bar.setAttribute('height', barHeight);
+      bar.setAttribute('depth', barDepth);
+      bar.setAttribute('position', `0 0 0`);
+      bar.setAttribute('color', 'black');
       dominoEntity.appendChild(bar);
 
       // Ajouter les points sur chaque côté du domino
