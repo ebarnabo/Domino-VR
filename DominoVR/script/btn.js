@@ -5,6 +5,7 @@ const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
 const menu = document.getElementById("menu");
 const vrgame = document.getElementById("vrscene");
+const playerinfos = document.getElementById("playerInfo");
 
 // Son jouées sur les boutons
 document.querySelectorAll('.btn-menu').forEach(button => {
@@ -18,29 +19,18 @@ document.querySelectorAll('.btn-menu').forEach(button => {
 
 // Ajoutez des gestionnaires d'événements aux boutons
 buttonGame.addEventListener('click', () => {
-  // Récupérez l'identifiant attribué depuis le localStorage
-  const playerIdentifier = localStorage.getItem('playerIdentifier');
+// Afficher un message avec le nouvel identifiant
+Swal.fire({
+  title: `Vous êtes le Joueur ${playerID}`,
+  timer: 2000, // Fermer automatiquement après 2 secondes
+  showConfirmButton: false, 
+})
+  // Masquez le menu et affichez le jeu (vrgame)
+  menu.classList.add("hide");
+  vrgame.classList.add("show");
+  playerinfos.classList.add("show");
 
-  // Vérifiez si l'identifiant existe dans le localStorage
-  if (playerIdentifier) {
-    // Affichez un Swal avec l'identifiant
-    Swal.fire({
-      title: `Vous êtes le Joueur ${playerIdentifier}`,
-      timer: 2000, // Fermer automatiquement après 2 secondes
-      showConfirmButton: false, // Cacher le bouton "OK"
-    });
 
-    // Masquez le menu et affichez le jeu (vrgame)
-    menu.classList.add("hide");
-    vrgame.classList.add("show");
-  } else {
-    // Si l'identifiant n'est pas trouvé dans le localStorage, affichez un message d'erreur ou demandez à l'utilisateur de choisir un identifiant
-    Swal.fire({
-      icon: 'error',
-      title: 'Erreur',
-      text: 'L\'identifiant du joueur n\'a pas été trouvé. Veuillez choisir un identifiant.',
-    });
-  }
 });
 
 button2.addEventListener('click', () => {

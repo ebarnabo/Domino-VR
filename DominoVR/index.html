@@ -10,11 +10,16 @@
     <link rel="stylesheet" href="./style/PACE.css">
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script  src="script/jump.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system/dist/aframe-physics-system.min.js"></script>
     <script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
+    <script> var playerID =  1; 
+      //Math.floor(Math.random() * 4) + 1; 
+    </script> 
+    <script  src="script/spawn.js"></script>
+
     <style>
       #app-inside { display: none; }
-      
     </style>
   </head>
   <body>
@@ -31,53 +36,62 @@
           <img src="img/fallback.jpg" style="width:100%; height: 100%; object-fit: cover; position: fixed; top: 0; left: 0; z-index: -1;" alt="Background image">
         </video>
         <ul id="menu" class="vertical-menu">
-          <li><button id="button1" class="btn-menu btn-primary">Jouer</button></li>
-          <li><button id="button2" class="btn-menu btn-secondary">Options</button></li>
-          <li><button id="button3" class="btn-menu btn-info">Crédits</button></li>
+          <li><button id="button1" class="btn-menu btn-primary">JOUER</button></li>
+          <li><button id="button2" class="btn-menu btn-secondary">OPTIONS</button></li>
+          <li><button id="button3" class="btn-menu btn-info">CRÉDITS</button></li>
         </ul>
         
         <a-scene id="vrscene" class="hide" physics vr-mode-ui="enabled: true" inspector>
-          <a-entity class="hand left" oculus-touch-controls="hand: left"></a-entity>
-          <a-entity class="hand right" oculus-touch-controls="hand: right"></a-entity>
-
-  
-          <!-- <a-assets>
-            <a-asset-item id="domino-obj" src="assets/3D/High/obj/Dominoes_High_Poly.obj"></a-asset-item>
-            <a-asset-item id="domino-mtl" src="assets/3D/High/mtl/Dominoes_High_Poly.mtl"></a-asset-item>
-          </a-assets> -->
+        <a-entity class="hand left" oculus-touch-controls="hand: left"></a-entity>
+        <a-entity class="hand right" oculus-touch-controls="hand: right"></a-entity>
 
           <!-- Sky (Ciel) -->
           <a-sky gltf-model=""></a-sky> 
       
           <!-- Table avec physique -->
-          <a-entity id="table" gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body="sphereRadius: NaN" position="0 -0.11682 0" radius="0.5" height="1" velocity="" scale="0.015 0.009 0.015"></a-entity>
+          <a-entity id="table" collision gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body="sphereRadius: NaN" position="0 -0.11682 0" radius="0.5" height="1" velocity="" scale="0.015 0.009 0.015"></a-entity>
 
           <!-- <a-obj-model src="#domino-obj" mtl="#domino-mtl" height=""></a-obj-model> -->
-
+          
           <!-- Camera -->
-          <a-entity id="player" rotation="-26.126875457965525 150.0003507652493 0" gltf-model="" camera look-controls wasd-controls position="1.2545792937408957 0.5 -1.447744688700918" collision jump-controls></a-entity>
+          <a-entity id="player" 
+          camera 
+          wasd-controls
+          look-controls="enabled: true"
+          thumbstick-look-controls="hand: right" 
+          custom-movement-controls="hand: left"
+          collision 
+          jump-controls>
+          </a-entity>
+
+
           <!-- Modèle du dojo -->
-          <a-entity id="dojo" gltf-model="url(assets/3D/dojo.glb)" scale="0.1 0.1 0.1" position="0 0 0"></a-entity>
+          <a-entity id="dojo" gltf-model="url(assets/dojo.glb)" scale="1 1 1" position="0 0 0"></a-entity>
           <!-- Composant pour mettre à jour le saut -->
         </a-scene>
+        <div class="hide" id="playerInfo" style="position: fixed; bottom: 10px; right: 10px; color: white; background: rgba(0, 0, 0, 0.5); padding: 10px;">
+          Numéro de personnage: <span id="playerNumber"></span><br>
+          Position: <span id="playerPosition"></span><br>
+          Orientation: <span id="playerRotation"></span>
+        </div>
+        
       </div>
     </div>
+
     <script>
       Pace.on('done', function() {
-        
         setTimeout(function() {
           document.getElementById('img-load').style.display = 'none';
           document.getElementById('app-inside').style.display = 'block';
-        }, 3000);
+        }, 500);
       });
     </script>
     <script src="script/btn.js"></script>
-    <script  src="/main.js"></script>
+    <script src ="script/infos-player.js"></script>
+    <script src ="script/moove.js"></script>
     <script  src="script/domino.js"></script>
     <script  src="script/grab.js"></script>
     <script  src="script/chaise.js"></script>
-    <script  src="script/jump.js"></script>
-    <script  src="script/spawn.js"></script>
 
   </body>
 </html>
