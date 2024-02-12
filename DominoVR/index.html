@@ -9,10 +9,11 @@
     <script src="script/Pace.js"></script>
     <link rel="stylesheet" href="./style/PACE.css">
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script  src="script/jump.js"></script>
+    <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system/dist/aframe-physics-system.min.js"></script>
     <script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script  src="script/jump.js"></script>
     <script src="https://kit.fontawesome.com/698cf3cd70.js" crossorigin="anonymous"></script>
     <script> const playerID = Math.floor(Math.random() * 4) + 1; 
       window.isSoundEnabled = true; 
@@ -53,15 +54,14 @@
           <!-- Camera -->
           <a-entity id="player" 
           camera 
-          wasd-controls
           look-controls="enabled: true"
-          custom-movement-controls="hand: left; speed: 0.1"
-          custom-look-controls="sensitivity: 100"
+          oculus-thumbstick-controls="acceleration: 45; rigSelector: #player; fly: false; controllerOriented: true; adAxis: x; wsAxis: z; enabled: true; adEnabled: true; adInverted: false; wsEnabled: true; wsInverted: false"
           collision 
           jump-controls>
             <a-entity class="hand left" oculus-touch-controls="hand: left"></a-entity>
             <a-entity class="hand right" oculus-touch-controls="hand: right"></a-entity>
           </a-entity>
+
 
 
           <!-- Modèle du dojo -->
