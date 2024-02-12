@@ -1,25 +1,38 @@
-  document.addEventListener('DOMContentLoaded', function () {
-    // Afficher la barre de chargement
+document.addEventListener('DOMContentLoaded', function() {
+    var jouerBtn = document.getElementById('button1'); // Assurez-vous que cet ID correspond à votre bouton Jouer
+    var sceneEl = document.getElementById('vrscene');
     var loadingBar = document.getElementById('loading-bar');
-    loadingBar.style.display = 'block';
+    var loadingProgress = document.getElementById('loading-progress');
 
-    var sceneEl = document.querySelector('a-scene');
+    jouerBtn.addEventListener('click', function() {
+        // Afficher la barre de chargement
+        loadingBar.classList.remove('hide');
+        loadingProgress.classList.remove('hide');
 
-    // Fonction pour vérifier si tous les modèles sont chargés
-    function checkAllModelsLoaded() {
-      var allModels = sceneEl.querySelectorAll('[gltf-model]');
-      var loadedModels = 0;
-      allModels.forEach(function(model) {
-        model.addEventListener('model-loaded', function() {
-          loadedModels++;
-          if (loadedModels === allModels.length) {
-            // Tous les modèles sont chargés, masquer la barre de chargement
-            loadingBar.style.display = 'none';
-          }
+        // Initialiser le chargement de la scène
+        sceneEl.classList.remove('hide'); // Rend la scène visible pour démarrer le chargement
+
+        // Gestion du chargement
+        var totalModels = sceneEl.querySelectorAll('[gltf-model]').length;
+        var loadedModels = 0;
+
+        if(totalModels === 0) { // Si aucune modèle 3D à charger, masquer directement la barre
+            loadingBar.classList.add('hide');
+            document.getElementById('menuingame').classList.remove('hide');
+        }
+
+        sceneEl.querySelectorAll('[gltf-model]').forEach(function(model) {
+            model.addEventListener('model-loaded', function() {
+                loadedModels++;
+                var progressPercentage = (loadedModels / totalModels) * 100;
+                loadingProgress.style.width = progressPercentage + '%';
+                if (loadedModels >= totalModels) {
+                    // Le chargement est terminé
+                    loadingBar.classList.add('hide');
+                    loadingProgress.classList.add('hide');
+                    document.getElementById('menuingame').classList.remove('hide'); // Affiche le menu in-game
+                }
+            });
         });
-      });
-    }
-
-    // Attendre que la scène soit chargée pour commencer à vérifier les modèles
-    sceneEl.addEventListener('loaded', checkAllModelsLoaded);
-  });
+    });
+});

@@ -8,7 +8,6 @@ const vrgame = document.getElementById("vrscene");
 const playerinfos = document.getElementById("playerInfo");
 const btnmenu = document.getElementById("menuingame");
 
-
 // Son jouées sur les boutons
 document.querySelectorAll('.btn-menu').forEach(button => {
     button.addEventListener('mouseenter', () => {
@@ -33,9 +32,9 @@ Swal.fire({
 })
   // Masquez le menu et affichez le jeu (vrgame)
   menu.classList.add("hide");
-  vrgame.classList.add("show");
-  playerinfos.classList.add("show");
-  btnmenu.classList.add("show");
+  vrgame.classList.remove("hide");
+  playerinfos.classList.remove("hide");
+  btnmenu.classList.remove("hide");
 });
 
 button2.addEventListener('click', () => {
@@ -120,11 +119,10 @@ document.getElementById('pauseButton').addEventListener('click', function() {
       };
       document.getElementById('backToMenu').onclick = function() {
         // Logique pour retourner au menu principal
-        menu.classList.add("show");
         menu.classList.remove("hide");
-        vrgame.classList.remove("show");
-        playerinfos.classList.remove("show");
-        btnmenu.classList.remove("show");
+        vrgame.classList.add("hide");
+        playerinfos.classList.add("hide");
+        btnmenu.classList.add("hide");
         Swal.close();
       };
     }

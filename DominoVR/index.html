@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="/style.css">
     <script src="script/Pace.js"></script>
     <link rel="stylesheet" href="./style/PACE.css">
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system/dist/aframe-physics-system.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system/dist/aframe-physics-system.min.js"></script> -->
     <script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script  src="script/jump.js"></script>
     <script src="https://kit.fontawesome.com/698cf3cd70.js" crossorigin="anonymous"></script>
@@ -45,9 +46,10 @@
           <li><button id="button2" class="btn-menu btn-secondary">OPTIONS <i class="fa-solid fa-wrench" style="color: #ffffff;"></i></button></li>
           <li><button id="button3" class="btn-menu btn-info">CRÉDITS <i class="fa-solid fa-award"></i></button></li>
         </ul>
-        <!-- Barre de chargement -->
-        <div id="loading-bar" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; background: #fff; padding: 10px;">
-          Chargement en cours...
+        <!-- Barre de chargement avec indication de progression -->
+        <div id="loading-bar" class="hide" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; background: #fff; padding: 10px;">
+          <div id="loading-progress" class="hide" style="width: 0%; background: #000; height: 20px;"></div>
+          Chargement...
         </div>
         <a-scene id="vrscene" class="hide" physics vr-mode-ui="enabled: true" inspector>
       

@@ -77,14 +77,6 @@ button:hover {
   transform: translateY(-5px);
 }
 
-.a-enter-vr {
-  position: fixed !important;
-  bottom: 0 !important;
-  right: 0 !important;
-  margin: 20px !important;
-  display: none !important;
-}
-
 .vertical-menu {
   list-style-type: none;
   padding: 0;
@@ -107,10 +99,6 @@ button:hover {
 
 .hide {
   display: none;
-}
-
-.show {
-  display: block;
 }
 
 .btn-menu {
