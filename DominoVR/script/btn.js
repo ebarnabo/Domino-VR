@@ -32,7 +32,6 @@ Swal.fire({
 })
   // Masquez le menu et affichez le jeu (vrgame)
   menu.classList.add("hide");
-  vrgame.classList.remove("hide");
   playerinfos.classList.remove("hide");
   btnmenu.classList.remove("hide");
 });
