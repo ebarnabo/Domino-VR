@@ -55,13 +55,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function generateDominos() {
     let dominos = [];
-    for (let i = 0; i <= 6; i++) {
-      for (let j = i; j <= 6; j++) {
-        dominos.push({ id: `${i}${j}`, class: 'grab', number1: i, number2: j });
+    const used = new Set(); // Utilisé pour suivre les dominos déjà générés
+    while (dominos.length < 28) { // Générer tous les dominos possibles
+      const number1 = Math.floor(Math.random() * 7); // Nombre aléatoire entre 0 et 6 inclus
+      const number2 = Math.floor(Math.random() * (7 - number1)) + number1; // Nombre aléatoire entre number1 et 6 inclus
+      const id = `${number1}${number2}`;
+      if (!used.has(id)) { // Vérifier si ce domino n'a pas déjà été généré
+        dominos.push({ id: id, class: 'grab', number1: number1, number2: number2 });
+        used.add(id); // Ajouter l'ID du domino généré à l'ensemble utilisé
       }
     }
     return dominos;
   }
+  
 
   function addDots(domino, number, side) {
     const dotPositions = getDotPositions(number); // Obtenir les positions des points pour le nombre spécifié
