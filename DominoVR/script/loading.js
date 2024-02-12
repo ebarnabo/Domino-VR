@@ -1,53 +1,70 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var jouerBtn = document.getElementById('button1'); // Bouton pour commencer le jeu
-    var sceneEl = document.getElementById('vrscene'); // L'élément de la scène A-Frame
-    var loadingBar = document.getElementById('loading-bar'); // La barre de chargement
-    var loadingProgress = document.getElementById('loading-progress'); // La progression de la barre de chargement
+    var jouerBtn = document.getElementById('button1');
+    var sceneEl = document.getElementById('vrscene');
+    var loadingBar = document.getElementById('loading-bar');
+    var loadingProgress = document.getElementById('loading-progress');
+    var menu = document.getElementById("menu");
+    var playerinfos = document.getElementById("playerInfo");
+    var btnmenu = document.getElementById("menuingame");
+    var pauseButton = document.getElementById("pauseButton"); 
+
+    function hideInitialUI() {
+        console.log('Masquer le menu principal et autres éléments UI initiaux');
+        menu.classList.add('hide');
+        playerinfos.classList.add('hide'); // Initialement masqué jusqu'à ce que le jeu soit chargé
+        btnmenu.classList.add('hide'); // Le menu in-game reste caché jusqu'à ce que le jeu soit chargé
+    }
+
+    function showGameUI() {
+        console.log('Afficher les éléments de l\'UI du jeu');
+        playerinfos.classList.remove('hide');
+        btnmenu.classList.remove('hide');
+        pauseButton.classList.remove('hide');
+        // Le bouton Pause est déjà inclus dans 'menuingame', donc il sera affiché avec son conteneur
+    }
 
     jouerBtn.addEventListener('click', function() {
         console.log('Bouton JOUER cliqué');
+        hideInitialUI(); // Masquer immédiatement le menu principal et d'autres éléments
+
         // Afficher la barre de chargement
         loadingBar.classList.remove('hide');
         loadingProgress.classList.remove('hide');
-        console.log('Barre de chargement affichée');
 
-        // Initialiser le chargement de la scène
-        sceneEl.classList.remove('hide'); // Rend la scène visible pour démarrer le chargement
-        console.log('Scène A-Frame rendue visible');
+        // Rendre la scène A-Frame visible pour commencer le chargement
+        sceneEl.classList.remove('hide');
 
-        var totalModels = sceneEl.querySelectorAll('[gltf-model]').length;
+        var models = sceneEl.querySelectorAll('[gltf-model]');
+        console.log('Nombre total de modèles trouvés dans la scène :', models.length);
+
+        var totalModels = models.length;
         var loadedModels = 0;
-        console.log(`Total de modèles à charger: ${totalModels}`);
 
-        // Vérifier si des modèles 3D doivent être chargés
-        if (totalModels > 0) {
-            sceneEl.querySelectorAll('[gltf-model]').forEach(function(model) {
+        if (totalModels === 0) {
+            console.log('Aucun modèle 3D à charger. Affichage immédiat de l\'UI du jeu.');
+            // Si aucun modèle 3D à charger, procéder immédiatement à afficher l'UI du jeu
+            setTimeout(() => { // Utiliser un timeout pour s'assurer que les transitions CSS se complètent
+                loadingBar.classList.add('hide');
+                loadingProgress.classList.add('hide');
+                showGameUI();
+            }, 100); // Délai court pour assurer la transition
+        } else {
+            console.log('Chargement des modèles 3D en cours...');
+            // Gérer le chargement des modèles 3D
+            models.forEach(function(model) {
                 model.addEventListener('model-loaded', function() {
                     loadedModels++;
-                    var progressPercentage = (loadedModels / totalModels) * 100;
-                    loadingProgress.style.width = progressPercentage + '%';
-                    console.log(`Modèle chargé: ${loadedModels}/${totalModels} (${progressPercentage}%)`);
+                    console.log('Modèle chargé. Nombre total de modèles chargés :', loadedModels);
                     if (loadedModels >= totalModels) {
-                        console.log('Tous les modèles 3D sont chargés');
-                        // Le chargement est terminé
+                        // Une fois tous les modèles chargés, cacher la barre de chargement et afficher l'UI du jeu
+                        console.log('Tous les modèles 3D sont chargés. Affichage de l\'UI du jeu.');
                         loadingBar.classList.add('hide');
                         loadingProgress.classList.add('hide');
-                        document.getElementById('menuingame').classList.remove('hide'); // Affiche le menu in-game
+                        showGameUI();
                     }
                 });
             });
-        } else {
-            // Si aucune modèle 3D à charger, ajuster directement la largeur de la barre de progression à 100%
-            loadingProgress.style.width = '100%';
-            console.log('Aucun modèle 3D à charger');
         }
-
-        // Masquage forcé de la barre de chargement après un délai comme mesure de sécurité
-        setTimeout(function() {
-            console.log('Masquage forcé de la barre de chargement après délai');
-            loadingBar.classList.add('hide');
-            loadingProgress.classList.add('hide');
-            document.getElementById('menuingame').classList.remove('hide'); // Assure l'affichage du menu in-game
-        }, 100); // Attendre 10 secondes avant de forcer le masquage
+        showGameUI();
     });
 });

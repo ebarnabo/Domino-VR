@@ -20,8 +20,6 @@
       window.isSoundEnabled = true; 
       
     </script> 
-    <script  src="script/spawn.js">
-    </script>
 
     <style>
       #app-inside { display: none; }
@@ -51,23 +49,16 @@
           <div id="loading-progress" class="hide" style="width: 0%; background: #000; height: 20px;"></div>
           Chargement...
         </div>
-        <a-scene id="vrscene" class="hide" physics vr-mode-ui="enabled: true" inspector>
+        <a-scene id="vrscene" class="hide" physics vr-mode-ui="enabled: true" inspector="true">
       
           <!-- Table avec physique -->
           <a-entity id="table" collision gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body="sphereRadius: NaN" position="0 -0.11682 0" radius="0.5" height="1" velocity="" scale="0.015 0.009 0.015"></a-entity>
           
           <!-- Camera -->
-          <a-entity id="player" 
-          camera 
-          look-controls="enabled: true"
-          oculus-thumbstick-controls="acceleration: 45; rigSelector: #player; fly: false; controllerOriented: true; adAxis: x; wsAxis: z; enabled: true; adEnabled: true; adInverted: false; wsEnabled: true; wsInverted: false"
-          collision 
-          wasd-controls
-          jump-controls>
+          <a-entity id="player" camera look-controls="enabled: true" oculus-thumbstick-controls="acceleration: 45; rigSelector: #cameraRig; fly: false; controllerOriented: true; adAxis: x; wsAxis: z; enabled: true; adEnabled: true; adInverted: false; wsEnabled: true; wsInverted: false" collision wasd-controls jump-controls height-adjust>
             <a-entity class="hand left" oculus-touch-controls="hand: left"></a-entity>
             <a-entity class="hand right" oculus-touch-controls="hand: right"></a-entity>
           </a-entity>
-
 
 
           <!-- Modèle du dojo -->
@@ -89,7 +80,6 @@
         
       </div>
     </div>
-
     <script>
       Pace.on('done', function() {
         setTimeout(function() {
@@ -99,6 +89,7 @@
       });
     </script>
     <script src="script/main.js"></script>
+    <script  src="script/spawn.js"></script>
     <script src="script/btn.js"></script>
     <script src ="script/infos-player.js"></script>
     <script src ="script/moove.js"></script>
@@ -106,8 +97,6 @@
     <script  src="script/loading.js"></script>
     <script  src="script/domino.js"></script>
     <script  src="script/grab.js"></script>
-
-
   </body>
 </html>
 
