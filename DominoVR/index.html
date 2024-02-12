@@ -45,7 +45,10 @@
           <li><button id="button2" class="btn-menu btn-secondary">OPTIONS <i class="fa-solid fa-wrench" style="color: #ffffff;"></i></button></li>
           <li><button id="button3" class="btn-menu btn-info">CRÉDITS <i class="fa-solid fa-award"></i></button></li>
         </ul>
-        
+        <!-- Barre de chargement -->
+        <div id="loading-bar" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; background: #fff; padding: 10px;">
+          Chargement en cours...
+        </div>
         <a-scene id="vrscene" class="hide" physics vr-mode-ui="enabled: true" inspector>
       
           <!-- Table avec physique -->
@@ -57,6 +60,7 @@
           look-controls="enabled: true"
           oculus-thumbstick-controls="acceleration: 45; rigSelector: #player; fly: false; controllerOriented: true; adAxis: x; wsAxis: z; enabled: true; adEnabled: true; adInverted: false; wsEnabled: true; wsInverted: false"
           collision 
+          wasd-controls
           jump-controls>
             <a-entity class="hand left" oculus-touch-controls="hand: left"></a-entity>
             <a-entity class="hand right" oculus-touch-controls="hand: right"></a-entity>
@@ -97,6 +101,7 @@
     <script src ="script/infos-player.js"></script>
     <script src ="script/moove.js"></script>
     <script  src="script/chaise.js"></script>
+    <script  src="script/loading.js"></script>
     <script  src="script/domino.js"></script>
     <script  src="script/grab.js"></script>
 
