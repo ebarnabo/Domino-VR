@@ -2,9 +2,9 @@
 .container-image {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Aligner les éléments vers le haut */
-  height: 100vh; /* Pour centrer verticalement */
-  flex-direction: column; /* Aligner les éléments en colonne */
+  align-items: flex-start;
+  height: 100vh;
+  flex-direction: column;
 }
 
 :root {
@@ -59,7 +59,7 @@ body {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 20px;
   border: none;
   outline: none;
   padding: 0.6em 1.2em;
@@ -75,22 +75,6 @@ button {
 button:hover {
   color: #ddd;
   transform: translateY(-5px);
-}
-
-.button-style {
-  background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  border-radius: 25px; /* Adjust as needed to match the shape from the image */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* This adds the shadow effect */
 }
 
 .a-enter-vr {
@@ -143,56 +127,53 @@ button:hover {
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
 }
 
+button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
 /* Couleur primaire pour l'action principale, souvent utilisée pour le bouton 'Jouer' */
 .btn-primary {
   background-color: #FC6736; /* Vert vif pour une bonne visibilité */
-  color: #ffffff;
+  color: white;
 }
 
 .btn-primary:hover {
-  background-color: #FC6735;
+  background-color: #FC6736;
 }
 
 /* Couleur secondaire pour des actions moins importantes comme 'Options' */
 .btn-secondary {
   background-color: #0C2D57; /* Bleu qui contraste bien avec le vert et le fond sombre */
-  color: #ffffff;
+  color: white;
 }
 
 .btn-secondary:hover {
   background-color: #0C2D56;
 }
 
-/* Couleur pour les informations secondaires ou les liens moins importants comme 'Crédits' */
+/* Couleur pour les informations secondaires comme 'Crédits' */
 .btn-info {
-  background-color: #EFECEC; /* Gris clair pour un contraste doux */
+  background-color: #EFECEC;
   color: black !important;
 }
 
-ul {
-  list-style-type: none; /* Élimine les puces */
-  padding: 0; /* Réinitialise le padding par défaut des listes */
-  margin: 0; /* Réinitialise la marge par défaut des listes */
+.btn-danger {
+  background-color: #db004d; /* Vert vif pour une bonne visibilité */
+  color: white;
 }
 
-.sound-toggle {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #fff;
-  border: none;
-  border-radius: 50%;
-  padding: 10px;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 2; /* S'assure qu'il est au-dessus de la vidéo de fond */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 /*couleur du titre dans les swal*/
 .title-class {
-  color: white;
+  color: white !important;
 }
 
 .txt_white {
-  color: white;
+  color: white !important;
 }/*# sourceMappingURL=style.css.map */

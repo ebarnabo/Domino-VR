@@ -12,10 +12,14 @@ const btnmenu = document.getElementById("menuingame");
 // Son jouées sur les boutons
 document.querySelectorAll('.btn-menu').forEach(button => {
     button.addEventListener('mouseenter', () => {
-      document.getElementById('hoverSound').play();
+      if (window.isSoundEnabled) {
+        document.getElementById('hoverSound').play();
+      }
     });
     button.addEventListener('click', () => {
-      document.getElementById('clickSound').play();
+        if (window.isSoundEnabled) {
+          document.getElementById('clickSound').play();
+        }
     });
   });
 
@@ -79,29 +83,83 @@ button3.addEventListener('click', () => {
   });
 });
 
-  
 document.getElementById('pauseButton').addEventListener('click', function() {
   Swal.fire({
-    title: "PAUSE",
-    text: "Le jeu est en pause.",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Reprendre",
-    cancelButtonText: "Menu principal",
-    showDenyButton: true,
-    denyButtonText: "Paramètres",
-  }).then((result) => {
-    if (result.isConfirmed) {
-      // code pour reprendre le jeu
-    } else if (result.isDenied) {
-      // code pour afficher les paramètres
-    } else if (result.dismiss === Swal.DismissReason.cancel) {
-      // code pour aller au menu principal
-      menu.classList.add("show");
-      menu.classList.remove("hide");
-      vrgame.classList.remove("show");
-      playerinfos.classList.remove("show");
-      btnmenu.classList.remove("show");
+    title: "",
+    html: `
+      <div style="text-align: center;">
+        <h3 class="title-class">Le jeu est en pause</h3>
+        <p class="title-class">Son du jeu :</p>
+        <div>
+          <button id="soundOnButton" class="swal2-confirm swal2-styled btn-menu" style="margin-right: 5px;">Oui <i class="fa-solid fa-volume-high" style="color: #ffffff;"></i></button>
+          <button id="soundOffButton" class="swal2-cancel swal2-styled btn-menu">Non <i class="fa-solid fa-volume-xmark" style="color: #ffffff;"></i></button>
+        </div>
+        <div style="margin-top: 10px;">
+          <button id="resumeGame" class="btn-menu btn-primary">Reprendre <i class="fa-solid fa-play" style="color: #ffffff;"></i></button>
+        </div>
+        <div style="margin-top: 10px;">
+          <button id="backToMenu" class="btn-menu title-class">Menu principal <i class="fa-solid fa-circle-xmark" style="color: #db004d;"></i></button>
+        </div>
+      </div>
+    `,
+    background: '#030637',
+    showConfirmButton: false,
+    showCancelButton: false,
+    didOpen: () => {
+      document.getElementById('soundOnButton').onclick = function() {
+        window.isSoundEnabled = true;
+        Swal.close();
+      };
+      document.getElementById('soundOffButton').onclick = function() {
+        window.isSoundEnabled = false;
+        mutePage(); // Assurez-vous que cette fonction existe pour couper le son
+        Swal.close();
+      };
+      document.getElementById('resumeGame').onclick = function() {
+        Swal.close();
+      };
+      document.getElementById('backToMenu').onclick = function() {
+        // Logique pour retourner au menu principal
+        menu.classList.add("show");
+        menu.classList.remove("hide");
+        vrgame.classList.remove("show");
+        playerinfos.classList.remove("show");
+        btnmenu.classList.remove("show");
+        Swal.close();
+      };
     }
+  }).then(() => {
+    document.getElementById('pauseButton').blur();
+  });
+});
+
+function mutePage() {
+  document.querySelectorAll("video, audio").forEach(elem => {
+    elem.muted = true;
+  });
+}  
+
+
+
+// Effet bouncy
+document.addEventListener("DOMContentLoaded", function() {
+  var btnMenus = document.querySelectorAll(".btn-menu");
+
+  btnMenus.forEach(function(btnMenu) {
+    var icon = btnMenu.querySelector("i");
+
+    // Ajoute la classe fa-bounce quand la souris entre
+    btnMenu.addEventListener("mouseenter", function() {
+      if(icon) { // S'assure que l'élément i existe
+        icon.classList.add("fa-bounce");
+      }
+    });
+
+    // Retire la classe fa-bounce quand la souris sort
+    btnMenu.addEventListener("mouseleave", function() {
+      if(icon) { // S'assure que l'élément i existe
+        icon.classList.remove("fa-bounce");
+      }
+    });
   });
 });
