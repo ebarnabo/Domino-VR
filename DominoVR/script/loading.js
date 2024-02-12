@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 });
             });
-        }
+        }///
         showGameUI();
     });
 });
