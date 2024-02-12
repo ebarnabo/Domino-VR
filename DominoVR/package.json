@@ -12,5 +12,8 @@
   "devDependencies": {
     "concurrently": "^8.2.2",
     "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "aframe-physics-system": "^4.0.2"
   }
 }

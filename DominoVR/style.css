@@ -1,4 +1,12 @@
 @charset "UTF-8";
+.container-image {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Aligner les éléments vers le haut */
+  height: 100vh; /* Pour centrer verticalement */
+  flex-direction: column; /* Aligner les éléments en colonne */
+}
+
 :root {
   font-family: "Inter", system-ui, sans-serif;
   line-height: 1.5;
@@ -67,6 +75,30 @@ button {
 button:hover {
   color: #ddd;
   transform: translateY(-5px);
+}
+
+.button-style {
+  background-image: linear-gradient(to right, #ff758c 0%, #ff7eb3 100%);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 25px; /* Adjust as needed to match the shape from the image */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); /* This adds the shadow effect */
+}
+
+.a-enter-vr {
+  position: fixed !important;
+  bottom: 0 !important;
+  right: 0 !important;
+  margin: 20px !important;
+  display: none !important;
 }
 
 .vertical-menu {

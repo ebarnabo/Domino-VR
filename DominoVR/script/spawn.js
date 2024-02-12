@@ -1,12 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   const playerChairs = {
-    1: { position: { x: -2, y: 1.4, z: 0 }, rotation: { x: 0, y: 90, z: 0 } },
-    2: { position: { x: 2, y: 1.4, z: 0 }, rotation: { x: 0, y: -90, z: 0 } },
-    3: { position: { x: 0, y: 1.4, z: 2 }, rotation: { x: 0, y: 180, z: 0 } },
-    4: { position: { x: 0, y: 1.4, z: -2 }, rotation: { x: 0, y: 0, z: 0 } }
+    1: { position: { x: 3.4, y: 1.4, z: 0 }, rotation: { x: 0, y: -90, z: 0 } },
+    2: { position: { x: 3.4, y: 1.4, z: 0 }, rotation: { x: 0, y: 90, z: 0 } },
+    3: { position: { x: 0.6, y: 1.4, z: 2.8 }, rotation: { x: 0, y: 0, z: 0 } },
+    4: { position: { x: 0.6, y: 1.4, z: -2.8 }, rotation: { x: 0, y: 180, z: 0 } }
   };
-
-  const playerID = 1; // Supposons que le joueur ID est 1 pour l'exemple
 
   const chair = playerChairs[playerID];
   const playerEntity = document.getElementById('player');
@@ -17,13 +15,13 @@ document.addEventListener('DOMContentLoaded', function() {
   playerEntity.setAttribute('custom-movement-controls', 'enabled: false');
 
   // Appliquer la position et la rotation
-  playerEntity.setAttribute('position', `${chair.position.x+4.5} ${chair.position.y} ${chair.position.z}`);
+  playerEntity.setAttribute('position', `${chair.position.x-0.6} ${chair.position.y} ${chair.position.z}`);
   playerEntity.setAttribute('rotation', `${chair.rotation.x} ${chair.rotation.y} ${chair.rotation.z}`);
 
   // Optionnel : réactiver les contrôles après un court délai
   // setTimeout(() => {
-     playerEntity.setAttribute('look-controls', 'enabled', true);
-     playerEntity.setAttribute('thumbstick-look-controls', 'enabled', true);
-     playerEntity.setAttribute('custom-movement-controls', 'enabled', true);
+  // playerEntity.setAttribute('look-controls', 'enabled: true');
+  // playerEntity.setAttribute('thumbstick-look-controls', 'enabled', true);
+  // playerEntity.setAttribute('custom-movement-controls', 'enabled', true);
   // }, 1000); 
 });

@@ -4,10 +4,54 @@ document.addEventListener('DOMContentLoaded', function () {
   const dominoHeight = 0.05; // Épaisseur du domino
   const barWidth = 0.02; // Largeur de la barre
   const barHeight = 0.04; // Hauteur de la barre
-  const dominos = generateDominos(); // Générer les dominos avec leurs ID
+  let dominos = generateDominos(); // Générer les dominos avec leurs ID
 
-  // Configuration pour la démo, pourrait être ajustée selon les besoins
-  const config = { angleDegrees: 0, height: 1.05, position: 1.2, spacing: 0.12 };
+  const chairs = [
+    // Chaise 1
+    { 
+      position: { x: -1.5, y: 0.6, z: -0.75 }, 
+      angleDegrees: 0, 
+      barAngleDegrees: 90, 
+      width: 0.1, 
+      height: 0.05, 
+      barColor: 'gold', 
+      gap: 0.25,
+      playerNumber: 1 
+    },
+    // Chaise 2
+    { 
+      position: { x: 1.2, y: 0.6, z: -0.75 }, 
+      angleDegrees: 0, 
+      barAngleDegrees: 90, 
+      width: 0.1, 
+      height: 0.05, 
+      barColor: 'silver', 
+      gap: 0.25,
+      playerNumber: 2 
+    },
+    // Chaise 3
+    { 
+      position: { x: 0.75, y: 0.6, z: 1.1 }, 
+      angleDegrees: 90, 
+      barAngleDegrees: 90, 
+      width: 0.1, 
+      height: 0.05, 
+      barColor: 'blue', 
+      gap: 0.25,
+      playerNumber: 3 
+    },
+    // Chaise 4
+    { 
+      position: { x: 0.75, y: 0.6, z: -1.5 }, 
+      angleDegrees: 90, 
+      barAngleDegrees: 90, 
+      width: 0.1, 
+      height: 0.05, 
+      barColor: 'green', 
+      gap: 0.25,
+      playerNumber: 4 
+    },
+  ];
 
   function generateDominos() {
     let dominos = [];
@@ -18,12 +62,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     return dominos;
   }
-  
 
   function addDots(domino, number, side) {
     const dotPositions = getDotPositions(number); // Obtenir les positions des points pour le nombre spécifié
     dotPositions.forEach(pos => {
-      const dot = document.createElement('a-cylinder');
+      const dot = document.createElement('a-sphere');
       dot.setAttribute('height', 0.01);
       dot.setAttribute('radius', 0.01);
       dot.setAttribute('color', 'black');
@@ -60,31 +103,31 @@ document.addEventListener('DOMContentLoaded', function () {
     return positions.map(pos => ({ x: pos.x + dominoWidth / 2, z: pos.z + dominoDepth / 2 }));
   }
 
-  function placeDominos(config) {
-    const angleRadians = config.angleDegrees * Math.PI / 180;
-    const xOffset = config.position * Math.cos(angleRadians);
-    const zOffset = config.position * Math.sin(angleRadians);
-    let rowStart = -(dominos.length - 1) * config.spacing / 2;
-    dominos.forEach((domino, i) => {
-      const dominoEntity = document.createElement('a-entity');
-      const x = xOffset + rowStart + i * config.spacing;
-      const z = zOffset;
+  function placeDominosForPlayer(playerChaise, dominos) {
+    const angleRadians = playerChaise.angleDegrees * Math.PI / 180;
+    const xOffset = playerChaise.position.x + playerChaise.gap * Math.cos(angleRadians);
+    const zOffset = playerChaise.position.z + playerChaise.gap * Math.sin(angleRadians);
 
-      dominoEntity.setAttribute('geometry', `primitive: box; width: ${dominoWidth}; height: ${dominoHeight}; depth: ${dominoDepth}`);
+    dominos.forEach((domino, index) => {
+      const dominoEntity = document.createElement('a-entity');
+      const x = xOffset - (index * playerChaise.gap * Math.sin(angleRadians));
+      const z = zOffset + (index * playerChaise.gap * Math.cos(angleRadians));
+
+      dominoEntity.setAttribute('geometry', `primitive: box; width: ${playerChaise.width}; height: ${playerChaise.height}; depth: ${dominoDepth}`);
       dominoEntity.setAttribute('material', 'color: #FFFFFF');
-      dominoEntity.setAttribute('position', `${x} ${config.height} ${z}`);
-      dominoEntity.setAttribute('rotation', `0 ${config.angleDegrees} 0`);
+      dominoEntity.setAttribute('position', `${x} ${playerChaise.position.y} ${z}`);
+      dominoEntity.setAttribute('rotation', `0 ${playerChaise.angleDegrees} 0`);
       dominoEntity.setAttribute('id', `domino-${domino.id}`);
 
       // Ajouter la barre fine au centre du domino
       const bar = document.createElement('a-box');
-      bar.setAttribute('width', barWidth/3);
-      bar.setAttribute('height', dominoHeight); // hauteur égale à celle du domino
+      bar.setAttribute('width', barWidth / 3);
+      bar.setAttribute('height', playerChaise.height); // hauteur égale à celle du domino
       bar.setAttribute('depth', 0.085);
-      bar.setAttribute('position', `0 ${(dominoHeight / 2) - (barHeight / 2)} 0`); // Positionner la barre au milieu du domino en hauteur
-      bar.setAttribute('color', 'gold');
+      bar.setAttribute('position', `0 ${(playerChaise.height / 2) - (barHeight / 2)} 0`); // Positionner la barre au milieu du domino en hauteur
+      bar.setAttribute('color', playerChaise.barColor);
       // Définir la rotation de la barre ici
-      bar.setAttribute('rotation', '0 90 0'); // Ceci tourne la barre de 90 degrés sur l'axe Y, la rendant perpendiculaire à la vue de la caméra.
+      bar.setAttribute('rotation', `0 ${playerChaise.barAngleDegrees} 0`);
       dominoEntity.appendChild(bar);
 
       // Ajouter les points sur chaque côté du domino
@@ -95,5 +138,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  placeDominos(config);
+  // Appeler placeDominosForPlayer pour chaque joueur avec les bonnes coordonnées
+  chairs.forEach(chaise => {
+    const dominosForPlayer = dominos.splice(0, 7);
+    placeDominosForPlayer(chaise, dominosForPlayer);
+  });
 });

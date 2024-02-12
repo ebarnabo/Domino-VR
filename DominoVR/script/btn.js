@@ -6,6 +6,8 @@ const button3 = document.getElementById('button3');
 const menu = document.getElementById("menu");
 const vrgame = document.getElementById("vrscene");
 const playerinfos = document.getElementById("playerInfo");
+const btnmenu = document.getElementById("menuingame");
+
 
 // Son jouées sur les boutons
 document.querySelectorAll('.btn-menu').forEach(button => {
@@ -29,8 +31,7 @@ Swal.fire({
   menu.classList.add("hide");
   vrgame.classList.add("show");
   playerinfos.classList.add("show");
-
-
+  btnmenu.classList.add("show");
 });
 
 button2.addEventListener('click', () => {
@@ -79,3 +80,28 @@ button3.addEventListener('click', () => {
 });
 
   
+document.getElementById('pauseButton').addEventListener('click', function() {
+  Swal.fire({
+    title: "PAUSE",
+    text: "Le jeu est en pause.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Reprendre",
+    cancelButtonText: "Menu principal",
+    showDenyButton: true,
+    denyButtonText: "Paramètres",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // code pour reprendre le jeu
+    } else if (result.isDenied) {
+      // code pour afficher les paramètres
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      // code pour aller au menu principal
+      menu.classList.add("show");
+      menu.classList.remove("hide");
+      vrgame.classList.remove("show");
+      playerinfos.classList.remove("show");
+      btnmenu.classList.remove("show");
+    }
+  });
+});

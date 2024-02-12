@@ -34,11 +34,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Création de l'animation d'ascension et de descente
     playerNameText.setAttribute('animation__move', {
       property: 'position',
-      to: `${chair.namePosition.x} ${chair.namePosition.y + 0.2} ${chair.namePosition.z}`, // Position de destination
+      to: `${chair.namePosition.x} ${chair.namePosition.y + 0.2} ${chair.namePosition.z}`,
+      from: `${chair.namePosition.x} ${chair.namePosition.y} ${chair.namePosition.z}`, // Position de départ légèrement en dessous de la position finale
       dur: 2000,  // Durée de l'animation (en millisecondes)
       easing: 'easeInOutCubic',
-      direction: 'alternate', // Jouer l'animation dans les deux sens
-      loop: true // Répéter en boucle
+      direction: 'alternate',
+      loop: true
     });
 
     scene.appendChild(chairEntity);
