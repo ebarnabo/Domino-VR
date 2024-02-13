@@ -164,4 +164,24 @@ ul {
 
 .txt_white {
   color: white !important;
+}
+
+.txt_primary {
+  color: #FC6736;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  height: 50% !important;
+}
+
+.swiper-slide > img {
+  margin-left: 10%;
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: #FC6736 !important;
+}
+
+.swiper-slide > div {
+  margin-bottom: 2%;
 }/*# sourceMappingURL=style.css.map */

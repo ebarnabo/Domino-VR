@@ -4,7 +4,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const dominoHeight = 0.05; // Épaisseur du domino
   const barWidth = 0.02; // Largeur de la barre
   const barHeight = 0.04; // Hauteur de la barre
-  let dominos = generateDominos(); // Générer les dominos avec leurs ID
+  let dominos = generateDominos();
+  let dominoEntity;
 
   const chairs = [
     // Chaise 1
@@ -120,7 +121,8 @@ document.addEventListener('DOMContentLoaded', function () {
       const z = zOffset + (index * playerChaise.gap * Math.cos(angleRadians));
 
       dominoEntity.setAttribute('geometry', `primitive: box; width: ${playerChaise.width}; height: ${playerChaise.height}; depth: ${dominoDepth}`);
-      dominoEntity.setAttribute('material', 'color: #FFFFFF');
+      //dominoEntity.setAttribute('material', 'color: grey',`src: ${selectedTexture}`);
+      dominoEntity.setAttribute('material',`src: ${selectedTexture}`);
       dominoEntity.setAttribute('position', `${x} ${playerChaise.position.y} ${z}`);
       dominoEntity.setAttribute('rotation', `0 ${playerChaise.angleDegrees} 0`);
       dominoEntity.setAttribute('id', `domino-${domino.id}`);
@@ -150,4 +152,11 @@ document.addEventListener('DOMContentLoaded', function () {
     placeDominosForPlayer(chaise, dominosForPlayer);
   });
 });
+
+function updateDominoTextures() {
+  alert(selectedTexture);
+  document.querySelectorAll('[id^="domino-"]').forEach(domino => {
+    domino.setAttribute('material', `src: ${selectedTexture}`);
+  });
+}
 

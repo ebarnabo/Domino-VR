@@ -61,11 +61,14 @@ AFRAME.registerComponent('jump-controls', {
         
   
         document.addEventListener('keydown', function (event) {
-            if (event.code === 'Space') {
+            if (event.code === 'Space' && partieEncours === "1") { // Comparaison avec une chaîne de caractères
                 startJump();
+                console.log("Saute mouton");
             }
         });
-  
+        
+        
+        
         this.el.sceneEl.addEventListener('xbuttondown', startJump);
         this.el.sceneEl.addEventListener('abuttondown', startJump);
     }

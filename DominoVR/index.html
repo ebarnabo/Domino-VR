@@ -6,20 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Domino VR</title>
     <link rel="stylesheet" href="/style.css">
+    <script> const playerID = Math.floor(Math.random() * 4) + 1; 
+      window.isSoundEnabled = true;   
+      let partieEncours = "0";
+      console.log("Partie en cours : "+partieEncours); 
+    </script> 
     <script src="script/Pace.js"></script>
     <link rel="stylesheet" href="./style/PACE.css">
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
+    <script src="https://unpkg.com/aframe-text-geometry-component@0.5.2/dist/aframe-text-geometry-component.min.js"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system/dist/aframe-physics-system.min.js"></script> -->
-    <script src="https://unpkg.com/aframe-text-geometry-component@0.5.1/dist/aframe-text-geometry-component.min.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script  src="script/jump.js"></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/698cf3cd70.js" crossorigin="anonymous"></script>
-    <script> const playerID = Math.floor(Math.random() * 4) + 1; 
-      window.isSoundEnabled = true; 
-      
-    </script> 
 
     <style>
       #app-inside { display: none; }
@@ -49,10 +53,10 @@
           <div id="loading-progress" class="hide" style="width: 0%; background: #000; height: 20px;"></div>
           Chargement...
         </div>
-        <a-scene id="vrscene" class="hide" physics vr-mode-ui="enabled: true" inspector="true">
-      
+        <a-scene id="vrscene" class="hide" physics="debug: true" vr-mode-ui="enabled: true" inspector>
+
           <!-- Table avec physique -->
-          <a-entity id="table" collision gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body="sphereRadius: NaN" position="0 -0.11682 0" radius="0.5" height="1" velocity="" scale="0.015 0.009 0.015"></a-entity>
+          <a-entity id="table" collision gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body position="0 -0.11682 0" radius="0.5" height="1" velocity="" scale="0.015 0.009 0.015"></a-entity>
           
           <!-- Camera -->
           <a-entity id="player" camera look-controls="enabled: true" oculus-thumbstick-controls="acceleration: 45; rigSelector: #cameraRig; fly: false; controllerOriented: true; adAxis: x; wsAxis: z; enabled: true; adEnabled: true; adInverted: false; wsEnabled: true; wsInverted: false" collision wasd-controls jump-controls height-adjust>
@@ -94,9 +98,8 @@
     <script src ="script/infos-player.js"></script>
     <script src ="script/moove.js"></script>
     <script  src="script/chaise.js"></script>
-    <script  src="script/loading.js"></script>
     <script  src="script/domino.js"></script>
-    <script  src="script/grab.js"></script>
+    <script  src="script/loading.js"></script>
   </body>
 </html>
 

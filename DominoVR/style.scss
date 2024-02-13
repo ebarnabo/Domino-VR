@@ -168,3 +168,21 @@ ul {
 .txt_white {
   color : $txt_white !important;
 }
+.txt_primary{
+  color: $primary;
+}
+
+.swiper-button-next, .swiper-button-prev{
+  height: 50% !important;
+}
+
+.swiper-slide > img {
+  margin-left: 10%;
+}
+.swiper-button-next, .swiper-button-prev{
+  color: $primary !important;
+}
+
+.swiper-slide > div {
+  margin-bottom: 2%;
+}

@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     4: { position: { x: 0.6, y: 1.4, z: -2.8 }, rotation: { x: 0, y: 180, z: 0 } }
   };
 
+  console.log("Texture chargée : "+ selectedTexture);
+
   const chair = playerChairs[playerID];
   const playerEntity = document.getElementById('player');
 

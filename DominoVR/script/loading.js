@@ -1,3 +1,6 @@
+partieEncours = "1"; 
+console.log("Partie en cours : "+partieEncours);   
+
 document.addEventListener('DOMContentLoaded', function() {
     var jouerBtn = document.getElementById('button1');
     var sceneEl = document.getElementById('vrscene');
