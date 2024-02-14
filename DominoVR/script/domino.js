@@ -136,6 +136,8 @@ document.addEventListener('DOMContentLoaded', function () {
       dominoEntity.setAttribute('grabbable', '');
       dominoEntity.setAttribute('droppable', '');
       dominoEntity.setAttribute('class', 'domino');
+      dominoEntity.setAttribute('collision-filter', 'group: dominos; collidesWith: default, hands');
+
 
 
 
