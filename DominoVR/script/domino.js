@@ -124,12 +124,18 @@ document.addEventListener('DOMContentLoaded', function () {
       const x = xOffset - (index * playerChaise.gap * Math.sin(angleRadians));
       const z = zOffset + (index * playerChaise.gap * Math.cos(angleRadians));
 
+      
+
       dominoEntity.setAttribute('geometry', `primitive: box; width: ${playerChaise.width}; height: ${playerChaise.height}; depth: ${dominoDepth}`);
       //dominoEntity.setAttribute('material', 'color: grey',`src: ${selectedTexture}`);
       //dominoEntity.setAttribute('material',`src: ${selectedTexture}`);
       dominoEntity.setAttribute('position', `${x} ${playerChaise.position.y} ${z}`);
       dominoEntity.setAttribute('rotation', `0 ${playerChaise.angleDegrees} 0`);
       dominoEntity.setAttribute('id', `domino-${domino.id}`);
+      dominoEntity.setAttribute('dynamic-body', '');
+      dominoEntity.setAttribute('grabbable', '');
+      dominoEntity.setAttribute('droppable', '');
+
 
       // Ajouter la barre fine au centre du domino
       const bar = document.createElement('a-box');

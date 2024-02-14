@@ -17,6 +17,9 @@
     <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
     <script src="https://unpkg.com/aframe-text-geometry-component@0.5.2/dist/aframe-text-geometry-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script  src="script/jump.js"></script>
@@ -48,18 +51,21 @@
           <li><button id="button2" class="btn-menu btn-secondary">OPTIONS <i class="fa-solid fa-wrench" style="color: #ffffff;"></i></button></li>
           <li><button id="button3" class="btn-menu btn-info">CRÉDITS <i class="fa-solid fa-award"></i></button></li>
         </ul>
-        <a-scene id="vrscene" class="hide" vr-mode-ui="enabled: true" inspector physics="preset: default;">
+        <a-scene id="vrscene" class="hide" vr-mode-ui="enabled: true" inspector physics="debug: true">
 
           <!-- Table avec physique -->
-          <a-entity id="table" collision gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body position="0 -0.11682 0" radius="0.5" height="1" velocity="" scale="0.015 0.009 0.015"></a-entity>
+          <a-entity id="table" grabbable gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body position="0 -0.11682 0" radius="0.5" height="1" velocity="" scale="0.015 0.009 0.015"></a-entity>
           
           <!-- Player -->
-          <a-entity id="rig" movement-controls="fly: false; speed: 0.005">
+          <!-- Player -->
+          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.005" dynamic-body="mass: 9999">
             <a-camera id="player" look-controls="enabled: true" jump-controls height-adjust>
-              <a-entity class="hand left" oculus-touch-controls="hand: left"></a-entity>
-              <a-entity class="hand right" oculus-touch-controls="hand: right"></a-entity>
+              <a-entity class="hand left" oculus-touch-controls="hand: left" super-hands></a-entity>
+              <a-entity class="hand right" oculus-touch-controls="hand: right" super-hands></a-entity>
             </a-camera>
           </a-entity>
+
+          
 
 
           <!-- Modèle du dojo -->
@@ -94,7 +100,6 @@
     <script  src="script/spawn.js"></script>
     <script src="script/btn.js"></script>
     <script src ="script/infos-player.js"></script>
-    <script src ="script/moove.js"></script>
     <script  src="script/chaise.js"></script>
     <script  src="script/domino.js"></script>
   </body>
