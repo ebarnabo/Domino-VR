@@ -14,6 +14,7 @@
     "vite": "^5.0.8"
   },
   "dependencies": {
+    "aframe-extras": "^7.2.0",
     "aframe-physics-system": "^4.0.2"
   }
 }
