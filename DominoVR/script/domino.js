@@ -139,8 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
       dominoEntity.setAttribute('collision-filter', 'group: dominos; collidesWith: default, hands');
 
 
-
-
       // Ajouter la barre fine au centre du domino
       const bar = document.createElement('a-box');
       bar.setAttribute('width', barWidth / 3);
