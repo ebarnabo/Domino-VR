@@ -13,11 +13,12 @@
     </script> 
     <script src="script/Pace.js"></script>
     <link rel="stylesheet" href="./style/PACE.css">
-    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
     <script src="https://unpkg.com/aframe-text-geometry-component@0.5.2/dist/aframe-text-geometry-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.4/dist/super-hands.min.js"></script>
+    <script src="https://rawgit.com/ngokevin/aframe-event-set-component/master/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -82,8 +83,8 @@
           <!-- Player -->
           <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.5" dynamic-body="mass: 9999">
             <a-camera id="player" look-controls="enabled: true" jump-controls height-adjust>
-              <a-entity id="rhand" mixin="physics-hands" hand-controls="hand: left"></a-entity>
-              <a-entity id="lhand" mixin="physics-hands" hand-controls="hand: right"></a-entity>          
+              <a-entity id="lhand" mixin="physics-hands" hand-controls="hand: left"></a-entity>
+              <a-entity id="rhand" mixin="physics-hands" hand-controls="hand: right"></a-entity>          
             </a-camera>
           </a-entity>
           
