@@ -46,11 +46,25 @@ const textures = [
     'img/textures/Regular Pavement 20 header.jpg',
 ];
 
+
 // Variable globale pour stocker la texture sélectionnée
     selectedTexture = textures[0]; // Par défaut, on choisit la première texture
 
 // Bouton 2
 button2.addEventListener('click', () => {
+    const textures = [
+        'img/textures/Grass03 header.jpg',
+        'img/textures/Concrete Panel 1 header.jpg',
+        'img/textures/Granite Wall Tiles 1.jpg',
+        'img/textures/Pavement 24 1.8x1.8m.jpg',
+        'img/textures/Regular Pavement 20 header.jpg',
+    ];
+
+    const models = [
+        'dojo.glb',
+        'skybox.glb',
+    ];
+
     let textureOptions = '';
     textures.forEach(texture => {
         textureOptions += `
@@ -60,6 +74,19 @@ button2.addEventListener('click', () => {
             </div>
             <div>
                 <button class="select-texture btn-primary" data-texture="${texture}">Valider la texture</button>
+            </div>
+        </div>`;
+    });
+
+    let modelOptions = '';
+    models.forEach(model => {
+        modelOptions += `
+        <div class="swiper-slide">
+            <div>
+                <img height="100px" width="100px" src="img/model/${model.replace('.glb', '.png')}" alt="Modèle 3D">
+            </div>
+            <div>
+                <button class="select-model btn-primary" data-model="assets/${model}">Valider le modèle 3D</button>
             </div>
         </div>`;
     });
@@ -81,11 +108,18 @@ button2.addEventListener('click', () => {
                 <li class='txt_white'>Difficulté: <select><option>Facile</option><option>Normal</option><option>Difficile</option></select></li>
             </ul>
             <hr>
-            <div class="swiper-container">
-                <div class="swiper-button-next"></div>
-                <div class="swiper-wrapper">${textureOptions}</div>
-                <div class="swiper-button-prev"></div>
+            <div class="swiper-container" id="model-slider">
+                <div class="swiper-wrapper">${modelOptions}</div>
+                <div class="swiper-button-next" id="model-slider-next"></div>
+                <div class="swiper-button-prev" id="model-slider-prev"></div>
             </div>
+            <hr>
+            <div class="swiper-container" id="texture-slider">
+                <div class="swiper-wrapper">${textureOptions}</div>
+                <div class="swiper-button-next" id="texture-slider-next"></div>
+                <div class="swiper-button-prev" id="texture-slider-prev"></div>
+            </div>
+
         `,
         showConfirmButton: true,
         didOpen: () => {
@@ -109,16 +143,28 @@ button2.addEventListener('click', () => {
     }).then(() => {
         pauseButton.blur();
     });
-    const swiper = new Swiper('.swiper-container', {
+
+    // Ajout des boutons de navigation uniques pour chaque slider
+    const textureSwiper = new Swiper('#texture-slider', {
         slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
         navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        }
+            nextEl: '#texture-slider-next',
+            prevEl: '#texture-slider-prev',
+        },
     });
-
+    
+    const modelSwiper = new Swiper('#model-slider', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        navigation: {
+            nextEl: '#model-slider-next',
+            prevEl: '#model-slider-prev',
+        },
+    });
+    
     // Écouteur d'événement pour les boutons de sélection de texture
     document.querySelectorAll('.select-texture').forEach(button => {
         button.addEventListener('click', () => {
@@ -128,8 +174,19 @@ button2.addEventListener('click', () => {
             localStorage.setItem('selectedTexture', selectedTexture);
         });
     });
-    
+
+    // Écouteur d'événement pour les boutons de sélection de modèle 3D
+    document.querySelectorAll('.select-model').forEach(button => {
+        button.addEventListener('click', () => {
+            const selectedModel = button.dataset.model;
+            console.log("Modèle 3D chargé : " + selectedModel);
+            // Mettre à jour la valeur du glt-model de l'élément avec l'id "dojo"
+            localStorage.setItem('stageModel', selectedModel);
+            Swal.close();
+        });
+    });
 });
+
 
 
 // bouton 3

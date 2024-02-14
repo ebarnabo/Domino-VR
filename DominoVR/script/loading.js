@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             for (let j = i; j <= 6; j++) {
                 let dominoId = `domino-${i}${j}`;
                 let dominoElement = document.getElementById(dominoId);
-                if (dominoElement) {  if (localStorage.getItem('selectedTexture') ){
-                  }
+                if (dominoElement) {  
                   if (localStorage.getItem('selectedTexture') ){
                     dominoElement.setAttribute('material', `src: ${localStorage.getItem('selectedTexture') }`);
                   }
@@ -34,6 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }        
     }
+
+    function updateModel() {
+
+                  if (localStorage.getItem('stageModel') ){
+                    document.getElementById('dojo').setAttribute('gltf-model', `${localStorage.getItem('stageModel') }`);
+                  }
+                }
+
+
     
     
 
@@ -44,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btnmenu.classList.remove('hide');
         pauseButton.classList.remove('hide');
         updateDominoTextures();
+        updateModel();
         // Le bouton Pause est déjà inclus dans 'menuingame', donc il sera affiché avec son conteneur
     }
 
