@@ -12,16 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   const cameraRig = document.getElementById('cameraRig');
 
-  // Appliquer la position et la rotation au camera rig
-
-
-  // Désactiver temporairement les contrôles de caméra pour appliquer la rotation
-  playerEntity.setAttribute('look-controls', 'enabled: false');
-  playerEntity.setAttribute('thumbstick-look-controls', 'enabled: false');
-  playerEntity.setAttribute('custom-movement-controls', 'enabled: false');
-
   // Appliquer la position et la rotation
-  playerEntity.setAttribute('position', `${chair.position.x-0.6} ${chair.position.y} ${chair.position.z}`);
-  playerEntity.setAttribute('rotation', `${chair.rotation.x} ${chair.rotation.y} ${chair.rotation.z}`);
+  cameraRig.setAttribute('position', `${chair.position.x-0.6} ${chair.position.y} ${chair.position.z}`);
+  cameraRig.setAttribute('rotation', `${chair.rotation.x} ${chair.rotation.y} ${chair.rotation.z}`);
 
 });
