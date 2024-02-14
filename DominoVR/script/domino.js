@@ -135,6 +135,8 @@ document.addEventListener('DOMContentLoaded', function () {
       dominoEntity.setAttribute('dynamic-body', '');
       dominoEntity.setAttribute('grabbable', '');
       dominoEntity.setAttribute('droppable', '');
+      dominoEntity.setAttribute('class', 'domino');
+
 
 
       // Ajouter la barre fine au centre du domino
