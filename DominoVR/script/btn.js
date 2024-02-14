@@ -3,7 +3,14 @@ const buttonGame = document.getElementById('button1');
 const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
 const pauseButton = document.getElementById('pauseButton'); // Assurez-vous que l'ID correspond
-let selectedTexture="img/textures/Grass03 header.jpg";  
+let selectedTexture; // Déclaration sans valeur initiale
+
+// Vérifier si une valeur est stockée dans le localStorage et qu'elle n'est pas vide
+if (localStorage.getItem('selectedTexture') && localStorage.getItem('selectedTexture').trim() !== '') {
+    selectedTexture = localStorage.getItem('selectedTexture');
+} else {
+    selectedTexture = "img/textures/Grass03 header.jpg"; // Utiliser la valeur par défaut si aucune valeur valide n'est trouvée
+}
 
 
 // Son jouées sur les boutons
@@ -116,9 +123,12 @@ button2.addEventListener('click', () => {
     document.querySelectorAll('.select-texture').forEach(button => {
         button.addEventListener('click', () => {
             selectedTexture = button.dataset.texture;
-              console.log("Texture chargée : "+ selectedTexture);
+            console.log("Texture chargée : " + selectedTexture);
+            // Sauvegarde dans le localStorage
+            localStorage.setItem('selectedTexture', selectedTexture);
         });
     });
+    
 });
 
 

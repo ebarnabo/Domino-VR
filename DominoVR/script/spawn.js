@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
   };
 
   console.log("Texture chargée : "+ selectedTexture);
-
   const chair = playerChairs[playerID];
   const playerEntity = document.getElementById('player');
 

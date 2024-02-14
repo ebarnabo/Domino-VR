@@ -48,11 +48,6 @@
           <li><button id="button2" class="btn-menu btn-secondary">OPTIONS <i class="fa-solid fa-wrench" style="color: #ffffff;"></i></button></li>
           <li><button id="button3" class="btn-menu btn-info">CRÉDITS <i class="fa-solid fa-award"></i></button></li>
         </ul>
-        <!-- Barre de chargement avec indication de progression -->
-        <div id="loading-bar" class="hide" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 100; background: #fff; padding: 10px;">
-          <div id="loading-progress" class="hide" style="width: 0%; background: #000; height: 20px;"></div>
-          Chargement...
-        </div>
         <a-scene id="vrscene" class="hide" physics="debug: true" vr-mode-ui="enabled: true" inspector>
 
           <!-- Table avec physique -->
@@ -93,13 +88,13 @@
       });
     </script>
     <script src="script/main.js"></script>
+    <script  src="script/loading.js"></script>
     <script  src="script/spawn.js"></script>
     <script src="script/btn.js"></script>
     <script src ="script/infos-player.js"></script>
     <script src ="script/moove.js"></script>
     <script  src="script/chaise.js"></script>
     <script  src="script/domino.js"></script>
-    <script  src="script/loading.js"></script>
   </body>
 </html>
 

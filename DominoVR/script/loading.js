@@ -17,22 +17,39 @@ document.addEventListener('DOMContentLoaded', function() {
         playerinfos.classList.add('hide'); // Initialement masqué jusqu'à ce que le jeu soit chargé
         btnmenu.classList.add('hide'); // Le menu in-game reste caché jusqu'à ce que le jeu soit chargé
     }
+    function updateDominoTextures() {
+        for (let i = 0; i <= 6; i++) {
+            for (let j = i; j <= 6; j++) {
+                let dominoId = `domino-${i}${j}`;
+                let dominoElement = document.getElementById(dominoId);
+                if (dominoElement) {  if (localStorage.getItem('selectedTexture') ){
+                  }
+                  if (localStorage.getItem('selectedTexture') ){
+                    dominoElement.setAttribute('material', `src: ${localStorage.getItem('selectedTexture') }`);
+                  }
+                  else{
+                    dominoElement.setAttribute('material', `src: ${selectedTexture}`);
+                  }
+                }
+            }
+        }        
+    }
+    
+    
 
     function showGameUI() {
         console.log('Afficher les éléments de l\'UI du jeu');
+        console.log("GO : Texture chargée : "+ selectedTexture);
         playerinfos.classList.remove('hide');
         btnmenu.classList.remove('hide');
         pauseButton.classList.remove('hide');
+        updateDominoTextures();
         // Le bouton Pause est déjà inclus dans 'menuingame', donc il sera affiché avec son conteneur
     }
 
     jouerBtn.addEventListener('click', function() {
         console.log('Bouton JOUER cliqué');
         hideInitialUI(); // Masquer immédiatement le menu principal et d'autres éléments
-
-        // Afficher la barre de chargement
-        loadingBar.classList.remove('hide');
-        loadingProgress.classList.remove('hide');
 
         // Rendre la scène A-Frame visible pour commencer le chargement
         sceneEl.classList.remove('hide');

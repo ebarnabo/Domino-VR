@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function () {
   const barHeight = 0.04; // Hauteur de la barre
   let dominos = generateDominos();
   let dominoEntity;
+  const player1color = 'gold' ;
+  const player2color = 'silver' ;
+  const player3color = 'blue';
+  const player4color = 'green';
 
   const chairs = [
     // Chaise 1
@@ -15,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
       barAngleDegrees: 90, 
       width: 0.1, 
       height: 0.05, 
-      barColor: 'gold', 
+      barColor: player1color, 
       gap: 0.25,
       playerNumber: 1 
     },
@@ -26,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
       barAngleDegrees: 90, 
       width: 0.1, 
       height: 0.05, 
-      barColor: 'silver', 
+      barColor: player2color, 
       gap: 0.25,
       playerNumber: 2 
     },
@@ -37,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
       barAngleDegrees: 90, 
       width: 0.1, 
       height: 0.05, 
-      barColor: 'blue', 
+      barColor: player3color, 
       gap: 0.25,
       playerNumber: 3 
     },
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
       barAngleDegrees: 90, 
       width: 0.1, 
       height: 0.05, 
-      barColor: 'green', 
+      barColor: player4color, 
       gap: 0.25,
       playerNumber: 4 
     },
@@ -122,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       dominoEntity.setAttribute('geometry', `primitive: box; width: ${playerChaise.width}; height: ${playerChaise.height}; depth: ${dominoDepth}`);
       //dominoEntity.setAttribute('material', 'color: grey',`src: ${selectedTexture}`);
-      dominoEntity.setAttribute('material',`src: ${selectedTexture}`);
+      //dominoEntity.setAttribute('material',`src: ${selectedTexture}`);
       dominoEntity.setAttribute('position', `${x} ${playerChaise.position.y} ${z}`);
       dominoEntity.setAttribute('rotation', `0 ${playerChaise.angleDegrees} 0`);
       dominoEntity.setAttribute('id', `domino-${domino.id}`);
@@ -152,11 +156,3 @@ document.addEventListener('DOMContentLoaded', function () {
     placeDominosForPlayer(chaise, dominosForPlayer);
   });
 });
-
-function updateDominoTextures() {
-  alert(selectedTexture);
-  document.querySelectorAll('[id^="domino-"]').forEach(domino => {
-    domino.setAttribute('material', `src: ${selectedTexture}`);
-  });
-}
-
