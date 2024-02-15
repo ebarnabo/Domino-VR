@@ -49,14 +49,13 @@
           <li><button id="button2" class="btn-menu btn-secondary">OPTIONS <i class="fa-solid fa-wrench" style="color: #ffffff;"></i></button></li>
           <li><button id="button3" class="btn-menu btn-info">CRÉDITS <i class="fa-solid fa-award"></i></button></li>
         </ul>
-        <a-scene id="vrscene" class="hide" vr-mode-ui="enabled: true" inspector physics="debug: true">
+        <a-scene id="vrscene" class="hide" vr-mode-ui="enabled: true" inspector physics="gravity: 0" position-on-enter-vr>
 
           <!-- Table avec physique -->
-          <a-entity id="table" grabbable gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body position="0 -0.11682 0" radius="0.5" height="1" velocity="" scale="0.015 0.009 0.015"></a-entity>
+          <a-entity id="table" grabbable gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body position="0 -0.11682 0" scale="0.015 0.009 0.015"></a-entity>
           
           <!-- Player -->
-          <!-- Player -->
-          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.5" dynamic-body="mass: 9999">
+          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.2" dynamic-body="mass: 9999">
             <a-camera id="player" look-controls="enabled: true" jump-controls height-adjust>
               <a-entity class="hand left" oculus-touch-controls="hand: left" super-hands></a-entity>
               <a-entity class="hand right" oculus-touch-controls="hand: right" super-hands></a-entity>
@@ -64,8 +63,6 @@
           </a-entity>
 
           
-
-
           <!-- Modèle du dojo -->
           <a-entity id="dojo" gltf-model="url(assets/skybox.glb)" scale="1 1 1" position="0 0 0" visible="true" static-body></a-entity>
           <!-- Composant pour mettre à jour le saut -->
@@ -91,6 +88,23 @@
           document.getElementById('img-load').style.display = 'none';
           document.getElementById('app-inside').style.display = 'block';
         }, 500);
+      });
+    </script>
+    <script>
+      AFRAME.registerComponent('position-on-enter-vr', {
+        init: function () {
+          var el = this.el;
+          
+          el.addEventListener('enter-vr', function () {
+            // Mettre à jour la position lorsque le mode VR est activé
+            el.setAttribute('position', '1 1 1'); // Remplacez les valeurs par celles que vous souhaitez
+          });
+    
+          el.addEventListener('exit-vr', function () {
+            // Réinitialiser la position lorsque le mode VR est quitté (optionnel)
+            el.setAttribute('position', '3 0 0'); // Remplacez les valeurs par celles que vous souhaitez
+          });
+        }
       });
     </script>
     <script src="script/main.js"></script>
