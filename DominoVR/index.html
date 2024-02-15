@@ -13,13 +13,11 @@
     </script> 
     <script src="script/Pace.js"></script>
     <link rel="stylesheet" href="./style/PACE.css">
-    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
     <script src="https://unpkg.com/aframe-text-geometry-component@0.5.2/dist/aframe-text-geometry-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
-    <script src="https://unpkg.com/super-hands@^3.0.4/dist/super-hands.min.js"></script>
-    <script src="https://rawgit.com/ngokevin/aframe-event-set-component/master/dist/aframe-event-set-component.min.js"></script>
-    <script src="https://unpkg.com/aframe-physics-extras@0.1.2/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script  src="script/jump.js"></script>
@@ -51,45 +49,23 @@
           <li><button id="button2" class="btn-menu btn-secondary">OPTIONS <i class="fa-solid fa-wrench" style="color: #ffffff;"></i></button></li>
           <li><button id="button3" class="btn-menu btn-info">CRÉDITS <i class="fa-solid fa-award"></i></button></li>
         </ul>
-        <a-scene id="vrscene" class="hide" vr-mode-ui="enabled: true" inspector physics="gravity: 0">
+        <a-scene id="vrscene" class="hide" vr-mode-ui="enabled: true" inspector physics="debug: true">
 
-          <a-assets>
-            <a-mixin id="all-interactions"
-                 hoverable grabbable stretchable draggable
-                 event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
-                 event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
-                 dynamic-body
-        ></a-mixin>
-
-        <a-mixin id="grab-move"
-                 hoverable grabbable draggable
-                 event-set__hoveron="_event: hover-start; material.opacity: 0.7; transparent: true"
-                 event-set__hoveroff="_event: hover-end; material.opacity: 1; transparent: false"
-                 dynamic-body
-        ></a-mixin>
-            <a-mixin id="physics-hands"
-            physics-collider phase-shift
-            collision-filter="collisionForces: false"
-            static-body="shape: sphere; sphereRadius: 0.02"
-            super-hands="colliderEvent: collisions;
-                         colliderEventProperty: els;
-                         colliderEndEvent: collisions;
-                         colliderEndEventProperty: clearedEls;"
-   ></a-mixin>
-          </a-assets>
           <!-- Table avec physique -->
           <a-entity id="table" grabbable gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body position="0 -0.11682 0" radius="0.5" height="1" velocity="" scale="0.015 0.009 0.015"></a-entity>
           
           <!-- Player -->
+          <!-- Player -->
           <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.5" dynamic-body="mass: 9999">
             <a-camera id="player" look-controls="enabled: true" jump-controls height-adjust>
-              <a-entity id="lhand" mixin="physics-hands" hand-controls="hand: left"></a-entity>
-              <a-entity id="rhand" mixin="physics-hands" hand-controls="hand: right"></a-entity>          
+              <a-entity class="hand left" oculus-touch-controls="hand: left" super-hands></a-entity>
+              <a-entity class="hand right" oculus-touch-controls="hand: right" super-hands></a-entity>
             </a-camera>
           </a-entity>
+
           
-          <a-box hoverable grabbable stretchable draggable droppable color="blue" position="0 0 0"></a-box>
-          <a-entity class="cube" mixin="cube all-interactions" position="0 0.265 -1" material="color: red"></a-entity>
+
+
           <!-- Modèle du dojo -->
           <a-entity id="dojo" gltf-model="url(assets/skybox.glb)" scale="1 1 1" position="0 0 0" visible="true" static-body></a-entity>
           <!-- Composant pour mettre à jour le saut -->
