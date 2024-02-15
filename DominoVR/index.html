@@ -55,7 +55,7 @@
           <a-entity id="table" grabbable gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body position="0 -0.11682 0" scale="0.015 0.009 0.015"></a-entity>
           
           <!-- Player -->
-          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.2" dynamic-body="mass: 9999">
+          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.01" dynamic-body="mass: 9999">
             <a-camera id="player" look-controls="enabled: true" jump-controls height-adjust>
               <a-entity class="hand left" oculus-touch-controls="hand: left" super-hands></a-entity>
               <a-entity class="hand right" oculus-touch-controls="hand: right" super-hands></a-entity>
