@@ -2,7 +2,8 @@
 const buttonGame = document.getElementById('button1');
 const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
-const pauseButton = document.getElementById('pauseButton'); // Assurez-vous que l'ID correspond
+const pauseButton = document.getElementById('pauseButton');
+const pauseButton2 = document.getElementById('pauseButton2'); 
 let selectedTexture; // Déclaration sans valeur initiale
 
 // Vérifier si une valeur est stockée dans le localStorage et qu'elle n'est pas vide
@@ -213,11 +214,12 @@ button3.addEventListener('click', () => {
     });
 });
 
-pauseButton.addEventListener('click', () => {
+// Fonction pour gérer la pause
+const handlePause = () => {
     Swal.fire({
-        title: "Pause",
         html: `
             <div style="text-align: center;">
+                <h1 class="txt_white">Pause</h1>
                 <h3 class="title-class txt_primary">Le jeu est en pause</h3>
                 <p class="title-class">Son du jeu :</p>
                 <div>
@@ -256,7 +258,15 @@ pauseButton.addEventListener('click', () => {
     }).then(() => {
         pauseButton.blur();
     });
-});
+};
+
+// Écouteur d'événements pour pauseButton
+pauseButton.addEventListener('click', handlePause);
+
+// Écouteur d'événements pour pauseButton2
+pauseButton2.addEventListener('click', handlePause);
+
+
 
 function mutePage() {
     document.querySelectorAll("video, audio").forEach(elem => {
