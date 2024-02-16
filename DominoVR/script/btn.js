@@ -10,7 +10,7 @@ let selectedTexture; // Déclaration sans valeur initiale
 if (localStorage.getItem('selectedTexture') && localStorage.getItem('selectedTexture').trim() !== '') {
     selectedTexture = localStorage.getItem('selectedTexture');
 } else {
-    selectedTexture = "img/textures/Grass03 header.jpg"; // Utiliser la valeur par défaut si aucune valeur valide n'est trouvée
+    selectedTexture = "img/textures/snow.jpg"; // Utiliser la valeur par défaut si aucune valeur valide n'est trouvée
 }
 
 
@@ -40,6 +40,7 @@ buttonGame.addEventListener('click', () => {
 // Bouton 2
 // Liste des fichiers textures disponibles
 const textures = [
+    'img/textures/snow.jpg',
     'img/textures/Grass03 header.jpg',
     'img/textures/Concrete Panel 1 header.jpg',
     'img/textures/Granite Wall Tiles 1.jpg',
@@ -54,6 +55,7 @@ const textures = [
 // Bouton 2
 button2.addEventListener('click', () => {
     const textures = [
+        'img/textures/snow.jpg',
         'img/textures/Grass03 header.jpg',
         'img/textures/Concrete Panel 1 header.jpg',
         'img/textures/Granite Wall Tiles 1.jpg',
