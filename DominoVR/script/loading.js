@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
             el.addEventListener('exit-vr', function () {
               // Réinitialiser la position lorsque le mode VR est quitté (optionnel)
-              el.setAttribute('position', '3 0 0'); // Remplacez les valeurs par celles que vous souhaitez
+              el.setAttribute('position', '0 0 0'); // Remplacez les valeurs par celles que vous souhaitez
             });
           }
         });
