@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function () {
       dominoEntity.setAttribute('rotation', `0 ${playerChaise.angleDegrees} 0`);
       dominoEntity.setAttribute('id', `domino-${domino.id}`);
       dominoEntity.setAttribute('class', 'domino');
-      dominoEntity.setAttribute('dynamic-body', '');
+      dominoEntity.setAttribute('dynamic-body', 'mass: 1; shape: box; friction: 0.01; restitution: 0.3');
       dominoEntity.setAttribute('shadow', '');
       dominoEntity.setAttribute('grabbable', '');
       dominoEntity.setAttribute('stretchable', '');
