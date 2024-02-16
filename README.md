@@ -1,9 +1,9 @@
 # Domino VR
 
 ## Description
-Domino VR est un projet innovant développé dans le cadre du Master 2 MIAGE à la MIAGE des Antilles par Edwin Barnabot. Ce jeu en réalité virtuelle offre une expérience immersive de jeu de dominos, permettant aux joueurs de se déplacer, de manipuler des dominos en mode VR grâce à Super Hands, de changer de scène et de texture des dominos, et bien plus encore.
+Domino VR est un projet innovant développé dans le cadre du Master 2 MIAGE à la MIAGE des Antilles par Edwin Barnabot. Ce future jeu en réalité virtuelle offrira une expérience immersive de jeu de dominos, il permet permettant aux joueurs de se déplacer, de manipuler des dominos en mode VR grâce à Super Hands, de changer de scène et de texture des dominos, et bien plus encore.
 
-## Fonctionnalités
+## Fonctionnalités déjà disponibles
 - **Déplacement** : Compatible avec le clavier et la manette Meta Quest (modes VR & AER).
 - **Manipulation des Dominos** : Saisir et poser les dominos en mode VR grâce à Super Hands.
 - **Changement de Scène** : Possibilité de changer la scène du jeu avec des modèles .glb, avec sauvegarde de la scène actuelle via localStorage.
@@ -12,7 +12,7 @@ Domino VR est un projet innovant développé dans le cadre du Master 2 MIAGE à 
 - **Génération de Dominos** : Les dominos sont générés aléatoirement et placés selon le numéro du joueur.
 - **Textes Flottants** : Indication de la position de chaque joueur avec des textes flottants.
 
-## Dépendances
+## Dépendances du projet
 - [A-Frame 1.4.2](https://aframe.io/releases/1.4.2/aframe.min.js) pour la création de scènes VR.
 - [Super Hands 3.0.3](https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js) pour la manipulation d'objets en VR.
 - [A-Frame Extras](https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js) pour des fonctionnalités supplémentaires dans A-Frame.
@@ -25,8 +25,7 @@ Domino VR est un projet innovant développé dans le cadre du Master 2 MIAGE à 
 ## Installation
 1. Clonez ce dépôt sur votre serveur local ou distant.
 2. Assurez-vous que toutes les dépendances sont correctement liées dans votre fichier `index.html`.
-3. Ouvrez `index.html` dans un navigateur compatible VR ou sur un dispositif de réalité virtuelle.
-
+3. Le projet utilise Vite.js. Vous devrez utiliser la commande 'npm run dev' pour lancer le serveur du projet, en étant correctement positionné dans le répertoire 'DominoVR', qui se trouve à l'intérieur du dossier téléchargé
 ## Contribution
 Toute contribution au projet est la bienvenue. Si vous souhaitez contribuer, veuillez forker le dépôt, créer une branche, apporter vos modifications et soumettre une pull request.
 
