@@ -17,18 +17,21 @@ document.addEventListener('DOMContentLoaded', function () {
     chairEntity.setAttribute('position', `${chair.position.x} ${chair.position.y} ${chair.position.z}`);
     chairEntity.setAttribute('rotation', `${chair.rotation.x} ${chair.rotation.y} ${chair.rotation.z}`);
     chairEntity.setAttribute('id', `chair-${chair.playerNumber}`);
+    chairEntity.setAttribute('loaded','');
     chairEntity.classList.add('grab');
 
     const chairModel = document.createElement('a-entity');
     chairModel.setAttribute('gltf-model', 'url(assets/chaise_plastique.glb)');
-    chairModel.setAttribute('scale', '0.8 0.8 0.88'); 
+    chairModel.setAttribute('scale', '0.8 0.8 0.88');
     chairEntity.appendChild(chairModel);
+    chairEntity.setAttribute('loaded','');
 
     const playerNameText = document.createElement('a-entity');
     playerNameText.setAttribute('text-geometry', `value: Joueur ${chair.playerNumber}; font: font/Facetype Press Start 2P.json`);
     playerNameText.setAttribute('position', `${chair.namePosition.x} ${chair.namePosition.y} ${chair.namePosition.z}`);
     playerNameText.setAttribute('rotation', `${chair.nameRotation.x} ${chair.nameRotation.y} ${chair.nameRotation.z}`);
     playerNameText.setAttribute('material', 'color: yellow');
+    playerNameText.setAttribute('loaded','');
     chairEntity.appendChild(playerNameText);
 
     // Création de l'animation d'ascension et de descente

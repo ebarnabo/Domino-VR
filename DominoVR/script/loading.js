@@ -54,6 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateDominoTextures();
         updateModel();
         
+        
         AFRAME.registerComponent('position-on-enter-vr', {
           init: function () {
             var el = this.el;

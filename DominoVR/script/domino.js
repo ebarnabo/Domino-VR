@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', function () {
       dominoEntity.setAttribute('stretchable', '');
       dominoEntity.setAttribute('draggable', '');
       dominoEntity.setAttribute('hoverable', '');
+      dominoEntity.setAttribute('loaded', '');
       dominoEntity.setAttribute('collision-filter', 'group: dominos; collidesWith: default, hands');
       dominoEntity.setAttribute('super-hands', 'colliderEvent: collisions; colliderEventProperty: els; colliderEndEvent: collisions; colliderEndEventProperty: clearedEls');
       dominoEntity.setAttribute('physics-collider', '');
