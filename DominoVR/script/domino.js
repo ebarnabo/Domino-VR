@@ -167,3 +167,22 @@ document.addEventListener('DOMContentLoaded', function () {
     placeDominosForPlayer(chaise, dominosForPlayer);
   });
 });
+
+// Écoute les événements de super-hands pour détecter la manipulation du domino
+document.addEventListener('componentchanged', function (event) {
+  const isDominos = event.target.classList.contains('domino'); // Vérifie si l'élément modifié est un domino
+  const isGrabbed = event.detail.el.getAttribute('super-hands') && event.detail.el.getAttribute('super-hands').grabbing; // Vérifie si le domino est en train d'être saisi
+
+  if (isDominos && isGrabbed) { // Si le domino est saisi
+    const domino = event.target;
+    const controller = event.detail.el.object3D; // Obtient l'objet 3D de la manette
+
+    // Récupère les mouvements de la manette pour calculer la rotation du domino
+    const controllerQuaternion = controller.getWorldQuaternion();
+    const dominoRotation = new THREE.Euler().setFromQuaternion(controllerQuaternion, 'YXZ'); // Obtient la rotation actuelle de la manette
+    const dominoRotationDegrees = dominoRotation.multiplyScalar(180 / Math.PI); // Convertit la rotation en degrés
+
+    // Met à jour la rotation du domino en fonction de la rotation de la manette
+    domino.setAttribute('rotation', `${dominoRotationDegrees.x} ${dominoRotationDegrees.y} ${dominoRotationDegrees.z}`);
+  }
+});

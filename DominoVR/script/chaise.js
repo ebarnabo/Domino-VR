@@ -19,6 +19,10 @@ document.addEventListener('DOMContentLoaded', function () {
     chairEntity.setAttribute('id', `chair-${chair.playerNumber}`);
     chairEntity.setAttribute('loaded','');
     chairEntity.classList.add('grab');
+    chairEntity.setAttribute('grabbable', '');
+    chairEntity.setAttribute('stretchable', '');
+    chairEntity.setAttribute('draggable', '');
+    chairEntity.setAttribute('hoverable', '');
 
     const chairModel = document.createElement('a-entity');
     chairModel.setAttribute('gltf-model', 'url(assets/chaise_plastique.glb)');
