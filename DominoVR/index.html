@@ -71,6 +71,9 @@
               design="cross">
           </a-gui-cursor>
             </a-camera>
+
+            <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
+            <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
           </a-entity>
 
           <a-gui-button id="guibtn"
@@ -89,6 +92,8 @@
             <a-image src="img/logo.png" width="1.5" height="1" position="0 0 0"></a-image>
           </a-entity>
           
+          <a-box hoverable grabbable stretchable draggable droppable color="blue" position="0 0 -1"></a-box>
+
           <!-- Modèle du dojo -->
           <a-entity id="dojo" gltf-model="url(assets/skybox.glb)" scale="1 1 1" position="0 0 0" visible="true" static-body></a-entity>
           <!-- Composant pour mettre à jour le saut -->
