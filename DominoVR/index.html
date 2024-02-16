@@ -60,13 +60,25 @@
           <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.09" dynamic-body="mass: 9999" position="4 0 0" rotation="0 90 0">
             <a-camera id="player" look-controls="enabled: true" jump-controls height-adjust>
               <a-gui-cursor id="cursor"
-                    raycaster="objects: [gui-interactable]"
-                    fuse="true" fuse-timeout="2000"
-                    color="#ECEFF1"
-                    hover-color="#CFD8DC"
-                    active-color="#607D8B"
-                    design="cross" > <!-- dot, ring, reticle, cross  -->
-              </a-gui-cursor>
+              raycaster="objects: [gui-interactable]; far: 10;"
+              fuse="true" fuse-timeout="2000"
+              color="#ECEFF1"
+              hover-color="#CFD8DC"
+              active-color="#607D8B"
+              design="cross">
+          </a-gui-cursor>
+          <a-gui-button
+    width="1" height="0.5"
+    position="0 1.5 -3"
+    value="Cliquez ici"
+    font-color="#000"
+    background-color="#FFF"
+    active-color="#CCC"
+    hover-color="#EEE"
+    font-size="48"
+    onclick="alert('Vous avez cliqué sur le bouton!')">
+</a-gui-button>
+          
             </a-camera>
           </a-entity>
 
