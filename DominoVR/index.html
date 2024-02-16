@@ -29,6 +29,10 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.1.0/dist/aframe-physics-system.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@^4.1.1/dist/aframe-event-set-component.min.js"></script>
+    <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
 
 
 
@@ -47,6 +51,21 @@
     <style>
       #app-inside { display: none; }
     </style>
+    <script>
+      // turn controller's physics presence on only while button held down
+      AFRAME.registerComponent('phase-shift', {
+        init: function () {
+          var el = this.el;
+          el.addEventListener('gripdown', function () {
+            el.setAttribute('collision-filter', { collisionForces: true });
+          });
+          el.addEventListener('gripup', function () {
+            el.setAttribute('collision-filter', { collisionForces: false });
+          });
+        }
+      });
+    </script>
+    
   </head>
   <body>
     <div id="app">
