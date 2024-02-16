@@ -10,6 +10,19 @@
       window.isSoundEnabled = true;   
       let partieEncours = "0";
       console.log("Partie en cours : "+partieEncours); 
+
+            // turn controller's physics presence on only while button held down
+            AFRAME.registerComponent('phase-shift', {
+              init: function () {
+                var el = this.el
+                el.addEventListener('gripdown', function () {
+                  el.setAttribute('collision-filter', {collisionForces: true})
+                })
+                el.addEventListener('gripup', function () {
+                  el.setAttribute('collision-filter', {collisionForces: false})
+                })
+              }
+            })
     </script> 
     <script src="script/Pace.js"></script>
     <link rel="stylesheet" href="./style/PACE.css">
@@ -21,6 +34,11 @@
     <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
 
+
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
+    <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+    <script src="https://unpkg.com/aframe-text-geometry-component@0.5.2/dist/aframe-text-geometry-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script  src="script/jump.js"></script>
     
@@ -78,7 +96,7 @@
           <a-entity id="table" grabbable gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body position="0 -0.11682 0" scale="0.015 0.009 0.015"></a-entity>
           
           <!-- Player -->
-          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.09" dynamic-body="mass: 9999" position="0 0 0" rotation="0 90 0">
+          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.09" dynamic-body="mass: 9999" position="4 0 0" rotation="0 90 0">
             <a-camera id="player" look-controls="enabled: true" jump-controls height-adjust>
               <a-gui-cursor id="cursor"
               raycaster="objects: [gui-interactable]; far: 10;"
@@ -156,23 +174,6 @@
       }
   
       document.getElementById('guibtn').click();
-  </script>
-  <script>
-    AFRAME.registerComponent('position-on-enter-vr', {
-      init: function () {
-        var el = this.el;
-        
-        el.addEventListener('enter-vr', function () {
-          // Mettre à jour la position lorsque le mode VR est activé
-          el.setAttribute('position', '0 -0.2 0'); // Remplacez les valeurs par celles que vous souhaitez
-        });
-  
-        el.addEventListener('exit-vr', function () {
-          // Réinitialiser la position lorsque le mode VR est quitté (optionnel)
-          el.setAttribute('position', '0 -0.2 0'); // Remplacez les valeurs par celles que vous souhaitez
-        });
-      }
-    });
   </script>
     <script src="script/main.js"></script>
     <script  src="script/loading.js"></script>
