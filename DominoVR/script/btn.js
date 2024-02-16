@@ -202,10 +202,10 @@ button3.addEventListener('click', () => {
         html: `
             <p class='txt_white'>Développé par l'équipe DominoVR</p>
             <ul>
-                <li class='txt_white'><strong>Game Design:</strong> Edwin Barnabot</li>
-                <li class='txt_white'><strong>Développement:</strong> Jorane Duhamel</li>
-                <li class='txt_white'><strong>Art et Graphismes:</strong> Edwin Barnabot</li>
-                <li class='txt_white'><strong>Musique et Sons:</strong> Tedrice Barvaut</li>
+                <li class='txt_white'><strong>Equipe du projet:</strong></li>
+                <li class='txt_primary'>Jorane Duhamel</li>
+                <li class='txt_white'>Edwin Barnabot</li>
+                <li class='txt_primary'>Tedrice Barvaut</li>
             </ul>
             <p class='txt_white'>Merci d'avoir joué à notre jeu !</p>
         `,

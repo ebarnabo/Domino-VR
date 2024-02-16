@@ -122,7 +122,7 @@ button:focus {
 
 /* Couleur primaire pour l'action principale, souvent utilisée pour le bouton 'Jouer' */
 .btn-primary {
-  background-color: #FC6736; /* Vert vif pour une bonne visibilité */
+  background-color: #FC6736;
   color: white;
 }
 
@@ -185,4 +185,8 @@ ul {
 .swiper-slide > div {
   margin-bottom: 2%;
   margin-top: 2%;
+}
+
+.swal2-confirm {
+  background-color: #FC6736 !important;
 }/*# sourceMappingURL=style.css.map */
