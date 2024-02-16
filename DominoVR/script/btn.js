@@ -41,6 +41,8 @@ buttonGame.addEventListener('click', () => {
 // Liste des fichiers textures disponibles
 const textures = [
     'img/textures/snow.jpg',
+    'img/textures/slime.jpg',
+    'img/textures/gold.jpg',
     'img/textures/Grass03 header.jpg',
     'img/textures/Concrete Panel 1 header.jpg',
     'img/textures/Granite Wall Tiles 1.jpg',
@@ -56,6 +58,8 @@ const textures = [
 button2.addEventListener('click', () => {
     const textures = [
         'img/textures/snow.jpg',
+        'img/textures/slime.jpg',
+        'img/textures/gold.jpg',
         'img/textures/Grass03 header.jpg',
         'img/textures/Concrete Panel 1 header.jpg',
         'img/textures/Granite Wall Tiles 1.jpg',
@@ -66,6 +70,9 @@ button2.addEventListener('click', () => {
     const models = [
         'dojo.glb',
         'skybox.glb',
+        'park.glb',
+        'island.glb',
+        'bernabeu.glb',
     ];
 
     let textureOptions = '';
@@ -111,17 +118,18 @@ button2.addEventListener('click', () => {
                 <li class='txt_white'>Difficulté: <select><option>Facile</option><option>Normal</option><option>Difficile</option></select></li>
             </ul>
             <hr>
+            <div class="swiper-container" id="texture-slider">
+            <div class="swiper-wrapper">${textureOptions}</div>
+            <div class="swiper-button-next" id="texture-slider-next"></div>
+            <div class="swiper-button-prev" id="texture-slider-prev"></div>
+        </div>
             <div class="swiper-container" id="model-slider">
                 <div class="swiper-wrapper">${modelOptions}</div>
                 <div class="swiper-button-next" id="model-slider-next"></div>
                 <div class="swiper-button-prev" id="model-slider-prev"></div>
             </div>
             <hr>
-            <div class="swiper-container" id="texture-slider">
-                <div class="swiper-wrapper">${textureOptions}</div>
-                <div class="swiper-button-next" id="texture-slider-next"></div>
-                <div class="swiper-button-prev" id="texture-slider-prev"></div>
-            </div>
+
 
         `,
         showConfirmButton: true,

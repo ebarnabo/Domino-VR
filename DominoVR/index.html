@@ -55,7 +55,7 @@
           <li><button id="button3" class="btn-menu btn-info">CRÉDITS <i class="fa-solid fa-award"></i></button></li>
         </ul>
         <a-scene id="vrscene" class="hide" vr-mode-ui="enabled: true" inspector physics="gravity: 0" position-on-enter-vr>
-
+          <!-- <a-sky gltf-model="assets/sky.glb"></a-sky> -->
           <!-- Table avec physique -->
           <a-entity id="table" grabbable gltf-model="assets/Table_3D_model.glb" visible="" static-body position="0 -0.11682 0" scale="0.015 0.009 0.015"></a-entity>
           
@@ -75,6 +75,10 @@
             <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
             <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
           </a-entity>
+
+          <a-entity id="ice-spice" position="-3.125 0.290 -5" gltf-model="assets/IceSpice.glb" hoverable grabbable stretchable draggable droppable></a-entity>
+          <a-entity id="kaaris" position="0.130 1.40 -5" gltf-model="assets/kaaris.glb" hoverable grabbable stretchable draggable droppable></a-entity>
+          <a-entity id="ball" position="3 0 0" gltf-model="assets/ball.glb" hoverable grabbable stretchable draggable droppable scale="0.4 0.4 0.4"></a-entity>
 
           <a-gui-button id="guibtn"
             width="1" height="0.5"
