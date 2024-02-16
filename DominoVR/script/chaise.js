@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
     chairEntity.setAttribute('rotation', `${chair.rotation.x} ${chair.rotation.y} ${chair.rotation.z}`);
     chairEntity.setAttribute('id', `chair-${chair.playerNumber}`);
     chairEntity.setAttribute('loaded','');
-    chairEntity.classList.add('grab');
     chairEntity.setAttribute('grabbable', '');
     chairEntity.setAttribute('stretchable', '');
     chairEntity.setAttribute('draggable', '');
@@ -28,7 +27,11 @@ document.addEventListener('DOMContentLoaded', function () {
     chairModel.setAttribute('gltf-model', 'url(assets/chaise_plastique.glb)');
     chairModel.setAttribute('scale', '0.8 0.8 0.88');
     chairEntity.appendChild(chairModel);
-    chairEntity.setAttribute('loaded','');
+    chairModel.setAttribute('loaded','');
+    chairModel.setAttribute('grabbable', '');
+    chairModel.setAttribute('stretchable', '');
+    chairModel.setAttribute('draggable', '');
+    chairModel.setAttribute('hoverable', '');
 
     const playerNameText = document.createElement('a-entity');
     playerNameText.setAttribute('text-geometry', `value: Joueur ${chair.playerNumber}; font: font/Facetype Press Start 2P.json`);
