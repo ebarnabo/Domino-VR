@@ -124,21 +124,23 @@ document.addEventListener('DOMContentLoaded', function () {
       const x = xOffset - (index * playerChaise.gap * Math.sin(angleRadians));
       const z = zOffset + (index * playerChaise.gap * Math.cos(angleRadians));
 
-      
-
       dominoEntity.setAttribute('geometry', `primitive: box; width: ${playerChaise.width}; height: ${playerChaise.height}; depth: ${dominoDepth}`);
-      //dominoEntity.setAttribute('material', 'color: grey',`src: ${selectedTexture}`);
-      //dominoEntity.setAttribute('material',`src: ${selectedTexture}`);
       dominoEntity.setAttribute('position', `${x} ${playerChaise.position.y} ${z}`);
       dominoEntity.setAttribute('rotation', `0 ${playerChaise.angleDegrees} 0`);
       dominoEntity.setAttribute('id', `domino-${domino.id}`);
-      dominoEntity.setAttribute('dynamic-body', '');
-      dominoEntity.setAttribute('grabbable', '');
-      dominoEntity.setAttribute('droppable', '');
       dominoEntity.setAttribute('class', 'domino');
+      dominoEntity.setAttribute('dynamic-body', '');
+      dominoEntity.setAttribute('shadow', '');
+      dominoEntity.setAttribute('grabbable', '');
+      dominoEntity.setAttribute('stretchable', '');
+      dominoEntity.setAttribute('draggable', '');
+      dominoEntity.setAttribute('hoverable', '');
       dominoEntity.setAttribute('collision-filter', 'group: dominos; collidesWith: default, hands');
-
-
+      dominoEntity.setAttribute('super-hands', 'colliderEvent: collisions; colliderEventProperty: els; colliderEndEvent: collisions; colliderEndEventProperty: clearedEls');
+      dominoEntity.setAttribute('physics-collider', '');
+      dominoEntity.setAttribute('static-body', 'shape: box');
+      dominoEntity.setAttribute('event-set__hoveron', "_event: hover-start; material.opacity: 0.7; transparent: true");
+      dominoEntity.setAttribute('event-set__hoveroff', "_event: hover-end; material.opacity: 1; transparent: false");
       // Ajouter la barre fine au centre du domino
       const bar = document.createElement('a-box');
       bar.setAttribute('width', barWidth / 3);
