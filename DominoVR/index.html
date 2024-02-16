@@ -22,10 +22,6 @@
     <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
 
 
-    <script src="https://gftruj.github.io/webzamples/aframe/controls/oculus-thumbstick-controls.js"></script>
-    <script src="https://unpkg.com/aframe-text-geometry-component@0.5.2/dist/aframe-text-geometry-component.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.misc.min.js"></script>
-    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -75,8 +71,6 @@
               design="cross">
           </a-gui-cursor>
             </a-camera>
-            <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: left"></a-entity>
-      <a-entity sphere-collider="objects: a-box" super-hands hand-controls="hand: right"></a-entity>
           </a-entity>
 
           <a-gui-button id="guibtn"
@@ -97,8 +91,7 @@
           
           <!-- Modèle du dojo -->
           <a-entity id="dojo" gltf-model="url(assets/skybox.glb)" scale="1 1 1" position="0 0 0" visible="true" static-body></a-entity>
-          <a-box hoverable grabbable stretchable draggable droppable color="blue" position="0 0 -1"></a-box>
-
+          <!-- Composant pour mettre à jour le saut -->
         </a-scene>
 
         <!-- Bouton de menu ingame -->
