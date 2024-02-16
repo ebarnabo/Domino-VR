@@ -40,9 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('dojo').setAttribute('gltf-model', `${localStorage.getItem('stageModel') }`);
                   }
                 }
-
-
-    
     
 
     function showGameUI() {
@@ -97,3 +94,19 @@ document.addEventListener('DOMContentLoaded', function() {
         showGameUI();
     });
 });
+
+AFRAME.registerComponent('position-on-enter-vr', {
+    init: function () {
+      var el = this.el;
+      
+      el.addEventListener('enter-vr', function () {
+        // Mettre à jour la position lorsque le mode VR est activé
+        el.setAttribute('position', '4 0 0'); // Remplacez les valeurs par celles que vous souhaitez
+      });
+
+      el.addEventListener('exit-vr', function () {
+        // Réinitialiser la position lorsque le mode VR est quitté (optionnel)
+        el.setAttribute('position', '3 0 0'); // Remplacez les valeurs par celles que vous souhaitez
+      });
+    }
+  });

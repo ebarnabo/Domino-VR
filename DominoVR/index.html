@@ -11,23 +11,6 @@
       let partieEncours = "0";
       console.log("Partie en cours : "+partieEncours); 
     </script> 
-    <script>
-      AFRAME.registerComponent('position-on-enter-vr', {
-        init: function () {
-          var el = this.el;
-          
-          el.addEventListener('enter-vr', function () {
-            // Mettre à jour la position lorsque le mode VR est activé
-            el.setAttribute('position', '1 1 1'); // Remplacez les valeurs par celles que vous souhaitez
-          });
-    
-          el.addEventListener('exit-vr', function () {
-            // Réinitialiser la position lorsque le mode VR est quitté (optionnel)
-            el.setAttribute('position', '3 0 0'); // Remplacez les valeurs par celles que vous souhaitez
-          });
-        }
-      });
-    </script>
     <script src="script/Pace.js"></script>
     <link rel="stylesheet" href="./style/PACE.css">
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
@@ -74,7 +57,7 @@
           <a-entity id="table" grabbable gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body position="0 -0.11682 0" scale="0.015 0.009 0.015"></a-entity>
           
           <!-- Player -->
-          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.09" dynamic-body="mass: 9999">
+          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.09" dynamic-body="mass: 9999" position="4 0 0" rotation="0 90 0">
             <a-camera id="player" look-controls="enabled: true" jump-controls height-adjust>
               <a-gui-cursor id="cursor"
                     raycaster="objects: [gui-interactable]"
