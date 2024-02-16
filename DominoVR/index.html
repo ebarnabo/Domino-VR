@@ -11,6 +11,23 @@
       let partieEncours = "0";
       console.log("Partie en cours : "+partieEncours); 
     </script> 
+    <script>
+      AFRAME.registerComponent('position-on-enter-vr', {
+        init: function () {
+          var el = this.el;
+          
+          el.addEventListener('enter-vr', function () {
+            // Mettre à jour la position lorsque le mode VR est activé
+            el.setAttribute('position', '1 1 1'); // Remplacez les valeurs par celles que vous souhaitez
+          });
+    
+          el.addEventListener('exit-vr', function () {
+            // Réinitialiser la position lorsque le mode VR est quitté (optionnel)
+            el.setAttribute('position', '3 0 0'); // Remplacez les valeurs par celles que vous souhaitez
+          });
+        }
+      });
+    </script>
     <script src="script/Pace.js"></script>
     <link rel="stylesheet" href="./style/PACE.css">
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
@@ -100,21 +117,6 @@
           document.getElementById('img-load').style.display = 'none';
           document.getElementById('app-inside').style.display = 'block';
         }, 500);
-      });
-    </script>
-    <script>
-      AFRAME.registerComponent('position-on-enter-vr', {
-        init: function () {
-          var el = this.el;
-          
-          el.addEventListener('enter-vr', function () {
-            el.setAttribute('position', '3 0 0'); 
-          });
-    
-          el.addEventListener('exit-vr', function () {
-            el.setAttribute('position', '3 0 0'); 
-          });
-        }
       });
     </script>
     <script src="script/main.js"></script>
