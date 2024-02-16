@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Domino VR</title>
     <link rel="stylesheet" href="/style.css">
-    <script> const playerID = 2; 
+    <script> const playerID = Math.floor(Math.random() * 4) + 1; 
       window.isSoundEnabled = true;   
       let partieEncours = "0";
       console.log("Partie en cours : "+partieEncours); 
@@ -61,7 +61,7 @@
           
           <!-- Player -->
           <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.09" dynamic-body="mass: 9999">
-            <a-camera id="player" look-controls="enabled: true" jump-controls gltf-model="assets/male_character_ps1-style.glb">
+            <a-camera id="player" look-controls="enabled: true" jump-controls >
               <a-gui-cursor id="cursor"
               raycaster="objects: [gui-interactable]; far: 10;"
               fuse="true" fuse-timeout="2000"
