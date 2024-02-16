@@ -18,6 +18,8 @@
     <script src="https://unpkg.com/aframe-text-geometry-component@0.5.2/dist/aframe-text-geometry-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
+    <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script  src="script/jump.js"></script>
@@ -57,6 +59,16 @@
           <!-- Player -->
           <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.09" dynamic-body="mass: 9999">
             <a-camera id="player" look-controls="enabled: true" jump-controls height-adjust>
+              <a-gui-cursor id="cursor"
+                    raycaster="objects: [gui-interactable]"
+                    fuse="true" fuse-timeout="2000"
+                    color="#ECEFF1"
+                    hover-color="#CFD8DC"
+                    active-color="#607D8B"
+                    design="cross" > <!-- dot, ring, reticle, cross  -->
+              </a-gui-cursor>
+
+
               <a-entity class="hand left" oculus-touch-controls="hand: left" super-hands></a-entity>
               <a-entity class="hand right" oculus-touch-controls="hand: right" super-hands></a-entity>
             </a-camera>
@@ -96,13 +108,11 @@
           var el = this.el;
           
           el.addEventListener('enter-vr', function () {
-            // Mettre à jour la position lorsque le mode VR est activé
-            el.setAttribute('position', '1 1 1'); // Remplacez les valeurs par celles que vous souhaitez
+            el.setAttribute('position', '3 0 0'); 
           });
     
           el.addEventListener('exit-vr', function () {
-            // Réinitialiser la position lorsque le mode VR est quitté (optionnel)
-            el.setAttribute('position', '3 0 0'); // Remplacez les valeurs par celles que vous souhaitez
+            el.setAttribute('position', '3 0 0'); 
           });
         }
       });
