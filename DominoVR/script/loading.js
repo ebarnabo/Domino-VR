@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     document.getElementById('dojo').setAttribute('gltf-model', `${localStorage.getItem('stageModel') }`);
                   }
                 }
+
+
+    
     
 
     function showGameUI() {
