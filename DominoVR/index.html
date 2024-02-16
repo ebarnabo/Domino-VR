@@ -16,7 +16,6 @@
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.1.0/dist/aframe-physics-system.js"></script>
     <script src="https://unpkg.com/aframe-event-set-component@^4.1.1/dist/aframe-event-set-component.min.js"></script>
     <script src="https://unpkg.com/aframe-physics-extras/dist/aframe-physics-extras.min.js"></script>
     <script src="https://unpkg.com/aframe-environment-component@1.3.2/dist/aframe-environment-component.min.js"></script>
@@ -171,7 +170,7 @@
         
         el.addEventListener('enter-vr', function () {
           // Mettre à jour la position lorsque le mode VR est activé
-          el.setAttribute('position', '1 1 1'); // Remplacez les valeurs par celles que vous souhaitez
+          el.setAttribute('position', '0 0 0'); // Remplacez les valeurs par celles que vous souhaitez
         });
   
         el.addEventListener('exit-vr', function () {
