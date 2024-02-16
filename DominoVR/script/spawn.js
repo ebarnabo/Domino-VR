@@ -17,3 +17,5 @@ document.addEventListener('DOMContentLoaded', function() {
   cameraRig.setAttribute('rotation', `${chair.rotation.x} ${chair.rotation.y} ${chair.rotation.z}`);
 
 });
+
+

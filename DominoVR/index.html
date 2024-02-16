@@ -10,19 +10,6 @@
       window.isSoundEnabled = true;   
       let partieEncours = "0";
       console.log("Partie en cours : "+partieEncours); 
-
-            // turn controller's physics presence on only while button held down
-            AFRAME.registerComponent('phase-shift', {
-              init: function () {
-                var el = this.el
-                el.addEventListener('gripdown', function () {
-                  el.setAttribute('collision-filter', {collisionForces: true})
-                })
-                el.addEventListener('gripup', function () {
-                  el.setAttribute('collision-filter', {collisionForces: false})
-                })
-              }
-            })
     </script> 
     <script src="script/Pace.js"></script>
     <link rel="stylesheet" href="./style/PACE.css">
@@ -205,7 +192,7 @@
   
         el.addEventListener('exit-vr', function () {
           // Réinitialiser la position lorsque le mode VR est quitté (optionnel)
-          el.setAttribute('position', '3 0 0'); // Remplacez les valeurs par celles que vous souhaitez
+          el.setAttribute('position', '0 -0.5 0'); // Remplacez les valeurs par celles que vous souhaitez
         });
       }
     });
