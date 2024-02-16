@@ -4,6 +4,12 @@ const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
 const pauseButton = document.getElementById('pauseButton');
 const pauseButton2 = document.getElementById('pauseButton2'); 
+var jouerBtn = document.getElementById('button1');
+var scene = document.getElementById('vrscene');
+var menu = document.getElementById("menu");
+var playerinfos = document.getElementById("playerInfo");
+var btnmenu = document.getElementById("menuingame");
+
 let selectedTexture; // Déclaration sans valeur initiale
 
 // Vérifier si une valeur est stockée dans le localStorage et qu'elle n'est pas vide
@@ -89,18 +95,26 @@ button2.addEventListener('click', () => {
     });
 
     let modelOptions = '';
-    models.forEach(model => {
+    models.forEach((model, index) => {
         modelOptions += `
         <div class="swiper-slide">
             <div>
                 <img height="100px" width="100px" src="img/model/${model.replace('.glb', '.png')}" alt="Modèle 3D">
             </div>
             <div>
-                <button class="select-model btn-primary" data-model="assets/${model}">Valider le modèle 3D</button>
+                <select id="modelScale-${index}" class="model-scale-select">
+                    <option value="0.5">0.5x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="2">2x</option>
+                    <option value="3">3x</option>
+                </select>
+            </div>
+            <div>
+                <button class="select-model btn-primary" data-model="assets/${model}" data-index="${index}">Valider le modèle 3D</button>
             </div>
         </div>`;
     });
-
+    
     Swal.fire({
         title: 'Options du jeu',
         background: '#030637',
@@ -186,16 +200,36 @@ button2.addEventListener('click', () => {
         });
     });
 
-    // Écouteur d'événement pour les boutons de sélection de modèle 3D
     document.querySelectorAll('.select-model').forEach(button => {
         button.addEventListener('click', () => {
             const selectedModel = button.dataset.model;
-            console.log("Modèle 3D chargé : " + selectedModel);
-            // Mettre à jour la valeur du glt-model de l'élément avec l'id "dojo"
+            const modelIndex = button.getAttribute('data-index');
+            // Supposons que vous avez un sélecteur d'échelle pour chaque modèle
+            const scaleSelector = document.querySelector(`#modelScale-${modelIndex}`);
+            const selectedScale = scaleSelector ? scaleSelector.value : "1 1 1"; // Utilisez la valeur du sélecteur s'il existe
+    
+            console.log("Modèle 3D chargé : " + selectedModel + " avec scale : " + selectedScale);
             localStorage.setItem('stageModel', selectedModel);
+            localStorage.setItem('modelScale', selectedScale); // Stockez l'échelle sélectionnée
             Swal.close();
         });
     });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const selectedModel = localStorage.getItem('stageModel');
+        const selectedScale = localStorage.getItem('modelScale') || "1 1 1"; // Fournir une valeur par défaut
+    
+        // Appliquer le modèle et le scale à l'entité
+        const entity = document.querySelector('#dojo'); // Assurez-vous que l'ID correspond à votre entité
+        if (entity) {
+            if (selectedModel) {
+                entity.setAttribute('gltf-model', `url(${selectedModel})`);
+            }
+            entity.setAttribute('scale', selectedScale);
+        }
+    });
+    
+    
 });
 
 
@@ -261,7 +295,10 @@ const handlePause = () => {
                 Swal.close();
             });
             document.getElementById('backToMenu').addEventListener('click', () => {
-                // Logique pour retourner au menu principal
+                menu.classList.remove("hide");
+                playerinfos.classList.add("hide");
+                btnmenu.classList.add("hide");
+                scene.classList.add("hide");
                 Swal.close();
             });
         }

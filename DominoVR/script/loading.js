@@ -4,8 +4,6 @@ console.log("Partie en cours : "+partieEncours);
 document.addEventListener('DOMContentLoaded', function() {
     var jouerBtn = document.getElementById('button1');
     var sceneEl = document.getElementById('vrscene');
-    var loadingBar = document.getElementById('loading-bar');
-    var loadingProgress = document.getElementById('loading-progress');
     var menu = document.getElementById("menu");
     var playerinfos = document.getElementById("playerInfo");
     var btnmenu = document.getElementById("menuingame");
