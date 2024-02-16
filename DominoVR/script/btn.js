@@ -264,7 +264,7 @@ const handlePause = () => {
 pauseButton.addEventListener('click', handlePause);
 
 // Écouteur d'événements pour pauseButton2
-pauseButton2.addEventListener('click', handlePause);
+//pauseButton2.addEventListener('click', handlePause);
 
 
 

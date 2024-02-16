@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Domino VR</title>
     <link rel="stylesheet" href="/style.css">
-    <script> const playerID = Math.floor(Math.random() * 4) + 1; 
+    <script> const playerID = 4; 
       window.isSoundEnabled = true;   
       let partieEncours = "0";
       console.log("Partie en cours : "+partieEncours); 
@@ -58,8 +58,8 @@
           <a-entity id="table" grabbable gltf-model="assets/Table_3D_model.glb" visible="" dynamic-body position="0 -0.11682 0" scale="0.015 0.009 0.015"></a-entity>
           
           <!-- Player -->
-          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.09" dynamic-body="mass: 9999" position="4 0 0" rotation="0 90 0">
-            <a-camera id="player" look-controls="enabled: true" jump-controls height-adjust>
+          <a-entity id="rig" movement-controls="controls: gamepad,keyboard;speed: 0.09" dynamic-body="mass: 9999">
+            <a-camera id="player" look-controls="enabled: true" jump-controls>
               <a-gui-cursor id="cursor"
               raycaster="objects: [gui-interactable]; far: 10;"
               fuse="true" fuse-timeout="2000"
@@ -73,12 +73,12 @@
 
           <a-gui-button id="guibtn"
             width="1" height="0.5"
-            position="0 1.5 -3"
+            position="0 4 0"
             value="Cliquez ici"
             font-color="red"
             background-color="#FFF"
             active-color="#CCC"
-            hover-color="#EEE"
+            hover-color="red"
             font-size="48"
             onclick="openModal">
           </a-gui-button>
