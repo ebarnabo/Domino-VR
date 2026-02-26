@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     chairModel.setAttribute('hoverable', '');
 
     const playerNameText = document.createElement('a-entity');
-    playerNameText.setAttribute('text-geometry', `value: Joueur ${chair.playerNumber}; font: font/Facetype Press Start 2P.json`);
+    playerNameText.setAttribute('text-geometry', `value: Joueur ${chair.playerNumber}; font: /font/Facetype Press Start 2P.json`);
     playerNameText.setAttribute('position', `${chair.namePosition.x} ${chair.namePosition.y} ${chair.namePosition.z}`);
     playerNameText.setAttribute('rotation', `${chair.nameRotation.x} ${chair.nameRotation.y} ${chair.nameRotation.z}`);
     playerNameText.setAttribute('material', 'color: yellow');
@@ -45,10 +45,10 @@ document.addEventListener('DOMContentLoaded', function () {
     playerNameText.setAttribute('animation__move', {
       property: 'position',
       to: `${chair.namePosition.x} ${chair.namePosition.y + 0.2} ${chair.namePosition.z}`,
-      from: `${chair.namePosition.x} ${chair.namePosition.y} ${chair.namePosition.z}`, // Position de départ légèrement en dessous de la position finale
-      dur: 2000,  // Durée de l'animation (en millisecondes)
+      from: `${chair.namePosition.x} ${chair.namePosition.y} ${chair.namePosition.z}`,
+      dur: 2000,
       easing: 'easeInOutCubic',
-      direction: 'alternate',
+      dir: 'alternate',
       loop: true
     });
 

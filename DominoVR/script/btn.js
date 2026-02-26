@@ -19,15 +19,28 @@ if (localStorage.getItem('selectedTexture') && localStorage.getItem('selectedTex
 }
 
 
-// Sons joués sur les boutons
+// Sons joués sur les boutons (uniquement après interaction utilisateur - politique autoplay)
+let audioUnlocked = false;
+function unlockAudio() {
+    if (audioUnlocked) return;
+    audioUnlocked = true;
+    const hoverSnd = document.getElementById('hoverSound');
+    const clickSnd = document.getElementById('clickSound');
+    if (hoverSnd) try { hoverSnd.play().then(() => hoverSnd.pause()); } catch (e) {}
+    if (clickSnd) try { clickSnd.play().then(() => clickSnd.pause()); } catch (e) {}
+}
+document.addEventListener('click', unlockAudio, { once: true, capture: true });
+document.addEventListener('touchstart', unlockAudio, { once: true, capture: true });
+
 document.querySelectorAll('.btn-menu').forEach(button => {
     button.addEventListener('mouseenter', () => {
-        if (window.isSoundEnabled) {
+        if (window.isSoundEnabled && audioUnlocked) {
             const snd = document.getElementById('hoverSound');
             if (snd) try { snd.play(); } catch (e) {}
         }
     });
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (e) => {
+        unlockAudio();
         if (window.isSoundEnabled) {
             const snd = document.getElementById('clickSound');
             if (snd) try { snd.play(); } catch (e) {}
