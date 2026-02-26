@@ -11,20 +11,20 @@
       let partieEncours = "0";
       console.log("Partie en cours : "+partieEncours); 
     </script> 
-    <script src="script/Pace.js"></script>
+    <script src="/script/Pace.js"></script>
     <link rel="stylesheet" href="./style/PACE.css">
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://unpkg.com/super-hands@^3.0.3/dist/super-hands.min.js"></script>
 
   
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.2.0/dist/aframe-extras.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-physics-system@4.0.2/dist/aframe-physics-system.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@c-frame/aframe-physics-system@4.2.4/dist/aframe-physics-system.min.js"></script>
     <script src="https://unpkg.com/aframe-text-geometry-component@0.5.2/dist/aframe-text-geometry-component.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/rdub80/aframe-gui@master/dist/aframe-gui.min.js"></script>
 
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script  src="script/jump.js"></script>
+    <script src="/script/jump.js"></script>
     
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -115,24 +115,31 @@
       </div>
     </div>
     <script>
-      Pace.on('done', function() {
-        setTimeout(function() {
-          document.getElementById('img-load').style.display = 'none';
-          document.getElementById('app-inside').style.display = 'block';
-        }, 500);
-      });
+      (function() {
+        function showApp() {
+          var imgLoad = document.getElementById('img-load');
+          var appInside = document.getElementById('app-inside');
+          if (imgLoad) imgLoad.style.display = 'none';
+          if (appInside) appInside.style.display = 'block';
+        }
+        if (typeof Pace !== 'undefined') {
+          Pace.on('done', function() { setTimeout(showApp, 500); });
+        } else {
+          setTimeout(showApp, 1500);
+        }
+      })();
     </script>
     <script>
       function openModal() {
           document.getElementById('modalDialog').setAttribute('visible', 'true');
       }
   </script>
-    <script src="script/main.js"></script>
-    <script  src="script/loading.js"></script>
-    <script  src="script/spawn.js"></script>
-    <script src="script/btn.js"></script>
-    <script src ="script/infos-player.js"></script>
-    <script  src="script/chaise.js"></script>
-    <script  src="script/domino.js"></script>
+    <script src="/script/main.js"></script>
+    <script src="/script/loading.js"></script>
+    <script src="/script/spawn.js"></script>
+    <script src="/script/btn.js"></script>
+    <script src="/script/infos-player.js"></script>
+    <script src="/script/chaise.js"></script>
+    <script src="/script/domino.js"></script>
   </body>
 </html>
