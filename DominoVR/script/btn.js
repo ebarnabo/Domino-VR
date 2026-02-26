@@ -3,7 +3,6 @@ const buttonGame = document.getElementById('button1');
 const button2 = document.getElementById('button2');
 const button3 = document.getElementById('button3');
 const pauseButton = document.getElementById('pauseButton');
-const pauseButton2 = document.getElementById('pauseButton2'); 
 var jouerBtn = document.getElementById('button1');
 var scene = document.getElementById('vrscene');
 var menu = document.getElementById("menu");
@@ -20,16 +19,18 @@ if (localStorage.getItem('selectedTexture') && localStorage.getItem('selectedTex
 }
 
 
-// Son jouées sur les boutons
+// Sons joués sur les boutons
 document.querySelectorAll('.btn-menu').forEach(button => {
     button.addEventListener('mouseenter', () => {
         if (window.isSoundEnabled) {
-            document.getElementById('hoverSound').play();
+            const snd = document.getElementById('hoverSound');
+            if (snd) try { snd.play(); } catch (e) {}
         }
     });
     button.addEventListener('click', () => {
         if (window.isSoundEnabled) {
-            document.getElementById('clickSound').play();
+            const snd = document.getElementById('clickSound');
+            if (snd) try { snd.play(); } catch (e) {}
         }
     });
 });
@@ -153,19 +154,11 @@ button2.addEventListener('click', () => {
             });
             document.getElementById('soundOffButton').addEventListener('click', () => {
                 window.isSoundEnabled = false;
-                // Assurez-vous d'implémenter la fonction mutePage si nécessaire
-                Swal.close();
-            });
-            document.getElementById('resumeGame').addEventListener('click', () => {
-                Swal.close();
-            });
-            document.getElementById('backToMenu').addEventListener('click', () => {
-                // Logique pour retourner au menu principal
                 Swal.close();
             });
         }
     }).then(() => {
-        pauseButton.blur();
+        if (pauseButton) pauseButton.blur();
     });
 
     // Ajout des boutons de navigation uniques pour chaque slider
@@ -308,10 +301,6 @@ const handlePause = () => {
 
 // Écouteur d'événements pour pauseButton
 pauseButton.addEventListener('click', handlePause);
-
-// Écouteur d'événements pour pauseButton2
-//pauseButton2.addEventListener('click', handlePause);
-
 
 
 function mutePage() {

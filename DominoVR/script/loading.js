@@ -51,8 +51,10 @@ document.addEventListener('DOMContentLoaded', function() {
         pauseButton.classList.remove('hide');
         updateDominoTextures();
         updateModel();
-        
-        
+    }
+
+    function registerPositionOnEnterVR() {
+        if (AFRAME.components['position-on-enter-vr']) return; // Déjà enregistré
         AFRAME.registerComponent('position-on-enter-vr', {
           init: function () {
             var el = this.el;
@@ -70,6 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Enregistrer le composant position-on-enter-vr au chargement
+    if (typeof AFRAME !== 'undefined') {
+        registerPositionOnEnterVR();
+    }
+
     jouerBtn.addEventListener('click', function() {
         console.log('Bouton JOUER cliqué');
         hideInitialUI(); // Masquer immédiatement le menu principal et d'autres éléments
@@ -85,29 +92,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (totalModels === 0) {
             console.log('Aucun modèle 3D à charger. Affichage immédiat de l\'UI du jeu.');
-            // Si aucun modèle 3D à charger, procéder immédiatement à afficher l'UI du jeu
-            setTimeout(() => { // Utiliser un timeout pour s'assurer que les transitions CSS se complètent
-                loadingBar.classList.add('hide');
-                loadingProgress.classList.add('hide');
+            setTimeout(() => {
+                const loadingBar = document.getElementById('loadingBar');
+                const loadingProgress = document.getElementById('loadingProgress');
+                if (loadingBar) loadingBar.classList.add('hide');
+                if (loadingProgress) loadingProgress.classList.add('hide');
                 showGameUI();
-            }, 100); // Délai court pour assurer la transition
+            }, 100);
         } else {
             console.log('Chargement des modèles 3D en cours...');
-            // Gérer le chargement des modèles 3D
             models.forEach(function(model) {
                 model.addEventListener('model-loaded', function() {
                     loadedModels++;
                     console.log('Modèle chargé. Nombre total de modèles chargés :', loadedModels);
                     if (loadedModels >= totalModels) {
-                        // Une fois tous les modèles chargés, cacher la barre de chargement et afficher l'UI du jeu
                         console.log('Tous les modèles 3D sont chargés. Affichage de l\'UI du jeu.');
-                        loadingBar.classList.add('hide');
-                        loadingProgress.classList.add('hide');
+                        const loadingBar = document.getElementById('loadingBar');
+                        const loadingProgress = document.getElementById('loadingProgress');
+                        if (loadingBar) loadingBar.classList.add('hide');
+                        if (loadingProgress) loadingProgress.classList.add('hide');
                         showGameUI();
                     }
                 });
             });
-        }///
-        showGameUI();
+        }
     });
 });

@@ -21,8 +21,8 @@ AFRAME.registerComponent('jump-controls', {
                     jumpCount++;
                 }
                 if (window.isSoundEnabled) {
-                    jumpSound.play();
-                  }
+                    try { jumpSound.play(); } catch (e) {}
+                }
                 initialVelocity = Math.sqrt(2 * gravity * (jumpHeight + (jumpCount === 2 ? jumpHeight / 2 : 0))); // Augmenter la hauteur pour le second saut
                 performJump();
             }

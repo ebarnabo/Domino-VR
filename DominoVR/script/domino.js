@@ -139,7 +139,6 @@ document.addEventListener('DOMContentLoaded', function () {
       dominoEntity.setAttribute('collision-filter', 'group: dominos; collidesWith: default, hands');
       dominoEntity.setAttribute('super-hands', 'colliderEvent: collisions; colliderEventProperty: els; colliderEndEvent: collisions; colliderEndEventProperty: clearedEls');
       dominoEntity.setAttribute('physics-collider', '');
-      dominoEntity.setAttribute('static-body', 'shape: box');
       dominoEntity.setAttribute('event-set__hoveron', "_event: hover-start; material.opacity: 0.7; transparent: true");
       dominoEntity.setAttribute('event-set__hoveroff', "_event: hover-end; material.opacity: 1; transparent: false");
       // Ajouter la barre fine au centre du domino
