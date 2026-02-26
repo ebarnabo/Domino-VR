@@ -15,7 +15,7 @@ let selectedTexture; // Déclaration sans valeur initiale
 if (localStorage.getItem('selectedTexture') && localStorage.getItem('selectedTexture').trim() !== '') {
     selectedTexture = localStorage.getItem('selectedTexture');
 } else {
-    selectedTexture = "img/textures/snow.jpg"; // Utiliser la valeur par défaut si aucune valeur valide n'est trouvée
+    selectedTexture = "/img/textures/snow.jpg"; // Utiliser la valeur par défaut
 }
 
 
@@ -57,64 +57,36 @@ buttonGame.addEventListener('click', () => {
     });
 });
 
-// Bouton 2
-// Liste des fichiers textures disponibles
-const textures = [
-    'img/textures/snow.jpg',
-    'img/textures/slime.jpg',
-    'img/textures/gold.jpg',
-    'img/textures/Grass03 header.jpg',
-    'img/textures/Concrete Panel 1 header.jpg',
-    'img/textures/Granite Wall Tiles 1.jpg',
-    'img/textures/Pavement 24 1.8x1.8m.jpg',
-    'img/textures/Regular Pavement 20 header.jpg',
-];
-
-
-// Variable globale pour stocker la texture sélectionnée
-    selectedTexture = textures[0]; // Par défaut, on choisit la première texture
-
-// Bouton 2
+// Bouton 2 - Options
 button2.addEventListener('click', () => {
-    const textures = [
-        'img/textures/snow.jpg',
-        'img/textures/slime.jpg',
-        'img/textures/gold.jpg',
-        'img/textures/Grass03 header.jpg',
-        'img/textures/Concrete Panel 1 header.jpg',
-        'img/textures/Granite Wall Tiles 1.jpg',
-        'img/textures/Pavement 24 1.8x1.8m.jpg',
-        'img/textures/Regular Pavement 20 header.jpg',
+    const texturePaths = [
+        '/img/textures/snow.jpg',
+        '/img/textures/slime.jpg',
+        '/img/textures/gold.jpg',
+        '/img/textures/Grass03 header.jpg',
+        '/img/textures/Concrete Panel 1 header.jpg',
+        '/img/textures/Granite Wall Tiles 1.jpg',
+        '/img/textures/Pavement 24 1.8x1.8m.jpg',
+        '/img/textures/Regular Pavement 20 header.jpg',
     ];
 
     const models = [
-        'dojo.glb',
-        'skybox.glb',
-        'park.glb',
-        'island.glb',
-        'bernabeu.glb',
+        { id: 'dojo.glb', name: 'Dojo' },
+        { id: 'skybox.glb', name: 'Skybox' },
+        { id: 'park.glb', name: 'Park' },
+        { id: 'island.glb', name: 'Island' },
+        { id: 'bernabeu.glb', name: 'Bernabeu' },
     ];
 
-    let textureOptions = '';
-    textures.forEach(texture => {
-        textureOptions += `
+    let textureOptions = texturePaths.map(t => `
         <div class="swiper-slide">
-            <div>
-                <img height="100px" width="100px" src="${texture}" alt="Texture">
-            </div>
-            <div>
-                <button class="select-texture btn-primary" data-texture="${texture}">Valider la texture</button>
-            </div>
-        </div>`;
-    });
+            <div><img height="100" width="100" src="${t}" alt="Texture" onerror="this.style.background='#333'"></div>
+            <div><button class="select-texture btn-primary" data-texture="${t}">Valider la texture</button></div>
+        </div>`).join('');
 
-    let modelOptions = '';
-    models.forEach((model, index) => {
-        modelOptions += `
+    let modelOptions = models.map((m, index) => `
         <div class="swiper-slide">
-            <div>
-                <img height="100px" width="100px" src="img/model/${model.replace('.glb', '.png')}" alt="Modèle 3D">
-            </div>
+            <div><img height="100" width="100" src="/img/model/${m.id.replace('.glb', '.png')}" alt="${m.name}" onerror="this.style.background='#333'"></div>
             <div>
                 <select id="modelScale-${index}" class="model-scale-select">
                     <option value="0.5">0.5x</option>
@@ -123,41 +95,33 @@ button2.addEventListener('click', () => {
                     <option value="3">3x</option>
                 </select>
             </div>
-            <div>
-                <button class="select-model btn-primary" data-model="assets/${model}" data-index="${index}">Valider le modèle 3D</button>
-            </div>
-        </div>`;
-    });
+            <div><button class="select-model btn-primary" data-model="/assets/${m.id}" data-index="${index}">Valider le terrain</button></div>
+        </div>`).join('');
     
     Swal.fire({
         title: 'Options du jeu',
         background: '#030637',
-        customClass: {
-            title: 'title-class',
-        },
+        customClass: { title: 'title-class' },
         html: `
-            <p class='txt_white'>Choisissez vos préférences pour une meilleure expérience de jeu.</p>
-            <ul>
-                <div>
-                    <p class="title-class">Son du jeu :</p>
-                    <button id="soundOnButton" class="swal2-confirm swal2-styled btn-menu" style="margin-right: 5px;">Oui <i class="fa-solid fa-volume-high" style="color: #ffffff;"></i></button>
-                    <button id="soundOffButton" class="swal2-cancel swal2-styled btn-menu">Non <i class="fa-solid fa-volume-xmark" style="color: #ffffff;"></i></button>
-                </div>
-            </ul>
+            <p class='txt_white'>Choisissez texture des dominos et terrain.</p>
+            <div><p class="title-class">Son :</p>
+                <button id="soundOnButton" class="btn-menu" style="margin-right: 5px;">Oui</button>
+                <button id="soundOffButton" class="btn-menu">Non</button>
+            </div>
             <hr>
+            <p class="title-class">Texture des dominos :</p>
             <div class="swiper-container" id="texture-slider">
-            <div class="swiper-wrapper">${textureOptions}</div>
-            <div class="swiper-button-next" id="texture-slider-next"></div>
-            <div class="swiper-button-prev" id="texture-slider-prev"></div>
-        </div>
+                <div class="swiper-wrapper">${textureOptions}</div>
+                <div class="swiper-button-next" id="texture-slider-next"></div>
+                <div class="swiper-button-prev" id="texture-slider-prev"></div>
+            </div>
+            <hr>
+            <p class="title-class">Terrain (dojo) :</p>
             <div class="swiper-container" id="model-slider">
                 <div class="swiper-wrapper">${modelOptions}</div>
                 <div class="swiper-button-next" id="model-slider-next"></div>
                 <div class="swiper-button-prev" id="model-slider-prev"></div>
             </div>
-            <hr>
-
-
         `,
         showConfirmButton: true,
         didOpen: () => {
@@ -169,72 +133,42 @@ button2.addEventListener('click', () => {
                 window.isSoundEnabled = false;
                 Swal.close();
             });
+            new Swiper('#texture-slider', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                navigation: { nextEl: '#texture-slider-next', prevEl: '#texture-slider-prev' },
+            });
+            new Swiper('#model-slider', {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                loop: true,
+                navigation: { nextEl: '#model-slider-next', prevEl: '#model-slider-prev' },
+            });
+            document.querySelectorAll('.select-texture').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    selectedTexture = btn.dataset.texture;
+                    localStorage.setItem('selectedTexture', selectedTexture);
+                    console.log("Texture : " + selectedTexture);
+                    Swal.close();
+                });
+            });
+            document.querySelectorAll('.select-model').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const model = btn.dataset.model;
+                    const idx = btn.getAttribute('data-index');
+                    const scaleSel = document.querySelector(`#modelScale-${idx}`);
+                    const scale = scaleSel ? scaleSel.value : '1';
+                    localStorage.setItem('stageModel', model);
+                    localStorage.setItem('modelScale', scale);
+                    console.log("Terrain : " + model + " scale " + scale);
+                    Swal.close();
+                });
+            });
         }
     }).then(() => {
         if (pauseButton) pauseButton.blur();
     });
-
-    // Ajout des boutons de navigation uniques pour chaque slider
-    const textureSwiper = new Swiper('#texture-slider', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        navigation: {
-            nextEl: '#texture-slider-next',
-            prevEl: '#texture-slider-prev',
-        },
-    });
-    
-    const modelSwiper = new Swiper('#model-slider', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        navigation: {
-            nextEl: '#model-slider-next',
-            prevEl: '#model-slider-prev',
-        },
-    });
-    
-    // Écouteur d'événement pour les boutons de sélection de texture
-    document.querySelectorAll('.select-texture').forEach(button => {
-        button.addEventListener('click', () => {
-            selectedTexture = button.dataset.texture;
-            console.log("Texture chargée : " + selectedTexture);
-            // Sauvegarde dans le localStorage
-            localStorage.setItem('selectedTexture', selectedTexture);
-        });
-    });
-
-    document.querySelectorAll('.select-model').forEach(button => {
-        button.addEventListener('click', () => {
-            const selectedModel = button.dataset.model;
-            const modelIndex = button.getAttribute('data-index');
-            // Supposons que vous avez un sélecteur d'échelle pour chaque modèle
-            const scaleSelector = document.querySelector(`#modelScale-${modelIndex}`);
-            const selectedScale = scaleSelector ? scaleSelector.value : "1 1 1"; // Utilisez la valeur du sélecteur s'il existe
-    
-            console.log("Modèle 3D chargé : " + selectedModel + " avec scale : " + selectedScale);
-            localStorage.setItem('stageModel', selectedModel);
-            localStorage.setItem('modelScale', selectedScale); // Stockez l'échelle sélectionnée
-            Swal.close();
-        });
-    });
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        const selectedModel = localStorage.getItem('stageModel');
-        const selectedScale = localStorage.getItem('modelScale') || "1 1 1"; // Fournir une valeur par défaut
-    
-        // Appliquer le modèle et le scale à l'entité
-        const entity = document.querySelector('#dojo'); // Assurez-vous que l'ID correspond à votre entité
-        if (entity) {
-            if (selectedModel) {
-                entity.setAttribute('gltf-model', `url(${selectedModel})`);
-            }
-            entity.setAttribute('scale', selectedScale);
-        }
-    });
-    
-    
 });
 
 

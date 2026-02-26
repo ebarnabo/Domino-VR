@@ -21,23 +21,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 let dominoId = `domino-${i}${j}`;
                 let dominoElement = document.getElementById(dominoId);
                 if (dominoElement) {  
-                  if (localStorage.getItem('selectedTexture') ){
-                    dominoElement.setAttribute('material', `src: ${localStorage.getItem('selectedTexture') }`);
-                  }
-                  else{
-                    dominoElement.setAttribute('material', `src: ${selectedTexture}`);
-                  }
+                  const tex = localStorage.getItem('selectedTexture') || (typeof selectedTexture !== 'undefined' ? selectedTexture : '/img/textures/snow.jpg');
+                  const texPath = (tex && tex.startsWith('/')) ? tex : '/' + (tex || 'img/textures/snow.jpg').replace(/^\//, '');
+                  dominoElement.setAttribute('material', `src: ${texPath}`);
                 }
             }
         }        
     }
 
     function updateModel() {
-
-                  if (localStorage.getItem('stageModel') ){
-                    document.getElementById('dojo').setAttribute('gltf-model', `${localStorage.getItem('stageModel') }`);
-                  }
-                }
+        const dojoEl = document.getElementById('dojo');
+        if (!dojoEl) return;
+        const stageModel = localStorage.getItem('stageModel');
+        const modelScale = localStorage.getItem('modelScale') || '1';
+        if (stageModel) {
+            const path = stageModel.startsWith('/') ? stageModel : '/' + stageModel;
+            dojoEl.setAttribute('gltf-model', `url(${path})`);
+        }
+        const scale = modelScale.includes(' ') ? modelScale : `${modelScale} ${modelScale} ${modelScale}`;
+        dojoEl.setAttribute('scale', scale);
+    }
 
 
     

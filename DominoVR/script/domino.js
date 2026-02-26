@@ -129,6 +129,8 @@ document.addEventListener('DOMContentLoaded', function () {
       dominoEntity.setAttribute('rotation', `0 ${playerChaise.angleDegrees} 0`);
       dominoEntity.setAttribute('id', `domino-${domino.id}`);
       dominoEntity.setAttribute('class', 'domino');
+      const tex = (typeof selectedTexture !== 'undefined' && selectedTexture) ? selectedTexture : '/img/textures/snow.jpg';
+      dominoEntity.setAttribute('material', `src: ${tex.startsWith('/') ? tex : '/' + tex}`);
       dominoEntity.setAttribute('dynamic-body', 'mass: 1; shape: box; friction: 0.01; restitution: 0.3');
       dominoEntity.setAttribute('shadow', '');
       dominoEntity.setAttribute('grabbable', '');

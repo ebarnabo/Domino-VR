@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
     chairEntity.setAttribute('hoverable', '');
 
     const chairModel = document.createElement('a-entity');
-    chairModel.setAttribute('gltf-model', 'url(assets/chaise_plastique.glb)');
+    chairModel.setAttribute('gltf-model', 'url(/assets/chaise_plastique.glb)');
     chairModel.setAttribute('scale', '0.8 0.8 0.88');
     chairEntity.appendChild(chairModel);
     chairModel.setAttribute('loaded','');
