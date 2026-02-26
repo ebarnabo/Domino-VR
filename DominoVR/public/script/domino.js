@@ -130,8 +130,8 @@ document.addEventListener('DOMContentLoaded', function () {
       dominoEntity.setAttribute('id', `domino-${domino.id}`);
       dominoEntity.setAttribute('class', 'domino');
       const tex = (typeof selectedTexture !== 'undefined' && selectedTexture) ? selectedTexture : '/img/textures/snow.jpg';
-      dominoEntity.setAttribute('material', `src: ${tex.startsWith('/') ? tex : '/' + tex}`);
-      dominoEntity.setAttribute('dynamic-body', 'mass: 1; shape: box; friction: 0.01; restitution: 0.3');
+      dominoEntity.setAttribute('material', `src: url(${tex.startsWith('/') ? tex : '/' + tex})`);
+      dominoEntity.setAttribute('dynamic-body', 'mass: 1; shape: box');
       dominoEntity.setAttribute('shadow', '');
       dominoEntity.setAttribute('grabbable', '');
       dominoEntity.setAttribute('stretchable', '');

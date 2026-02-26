@@ -15,7 +15,7 @@ let selectedTexture; // Déclaration sans valeur initiale
 if (localStorage.getItem('selectedTexture') && localStorage.getItem('selectedTexture').trim() !== '') {
     selectedTexture = localStorage.getItem('selectedTexture');
 } else {
-    selectedTexture = "/img/textures/snow.jpg"; // Utiliser la valeur par défaut
+    selectedTexture = "/img/textures/snow.jpg";
 }
 
 

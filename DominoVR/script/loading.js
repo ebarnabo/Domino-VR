@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (dominoElement) {  
                   const tex = localStorage.getItem('selectedTexture') || (typeof selectedTexture !== 'undefined' ? selectedTexture : '/img/textures/snow.jpg');
                   const texPath = (tex && tex.startsWith('/')) ? tex : '/' + (tex || 'img/textures/snow.jpg').replace(/^\//, '');
-                  dominoElement.setAttribute('material', `src: ${texPath}`);
+                  dominoElement.setAttribute('material', `src: url(${texPath})`);
                 }
             }
         }        
